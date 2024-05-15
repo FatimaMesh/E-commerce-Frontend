@@ -1,11 +1,11 @@
 import { useState } from "react"
 
-import { LoginForm } from "./LoginForm"
-import { RegisterForm } from "./RegisterForm"
+import { LoginForm } from "../components/LoginForm"
+import { RegisterForm } from "../components/RegisterForm"
 import "../style/login.css"
 import lock from "../assets/image/lock.png"
-import { Footer } from "./Footer"
-import { Header } from "./Header"
+import { Footer } from "../components/Footer"
+import { Header } from "../components/Header"
 
 export const Account = () => {
   const [registerActive, setRegisterActive] = useState<boolean>(false)
