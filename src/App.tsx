@@ -1,8 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
+
 import "./App.css"
-import { Products } from "./pages/Product"
-import { Home } from "./pages/Home"
-import ProductDetail from "./pages/ProductDetail"
+import { Home, Products, ProductDetail, Error } from "./pages/pages"
+import { Account } from "./components/Account"
 
 function App() {
   return (
@@ -11,7 +11,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/dashboard" element="" />
         <Route path="/products" element={<Products />} />
-        <Route path="/products/:productId" element={<ProductDetail/>}/>
+        <Route path="/products/:productId" element={<ProductDetail />} />
+        <Route path="/login" element={<Account />} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>
   )

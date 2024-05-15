@@ -1,0 +1,155 @@
+.auth-container {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  height: 40rem;
+}
+
+.auth-container .card {
+  display: flex;
+  background-color: whitesmoke;
+  border-radius: 1rem;
+  width: 50rem;
+}
+
+.card_info {
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 1rem;
+  background-image: var(--bgcolor);
+  transition: 0.5s linear;
+  width: 15em;
+  height: 20em;
+  min-width: 20vw;
+  max-width: 40vw;
+  max-height: 50vh;
+  border-top-right-radius: 5rem;
+  border-bottom-right-radius: 5rem;
+  border-top-left-radius: 1rem;
+  border-bottom-left-radius: 1rem;
+  color: white;
+}
+
+.card_info p {
+  width: 90%;
+  text-align: center;
+}
+
+.card_input {
+  flex-grow: 1;
+  transition: 0.5s linear;
+}
+
+.card_image {
+  position: absolute;
+  top: 4.5rem;
+}
+
+.card_image img {
+  width: 10rem;
+  height: 7rem;
+  z-index: 1;
+}
+
+.form_title {
+  text-align: center;
+  margin: 1rem;
+  font-size: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem;
+  border-radius: 25px;
+  transition: 0.4s ease-in;
+}
+
+.input {
+  width: 250px;
+}
+
+.form .btn_container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1em;
+  gap: 1rem;
+}
+
+.card_reverse {
+  flex-direction: row-reverse;
+  height: 25rem;
+}
+.card_reverse .card_image {
+  top: 2rem;
+}
+
+.card_reverse .card_info {
+  border-top-right-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  border-top-left-radius: 5em;
+  border-bottom-left-radius: 5rem;
+  height: 25em;
+  max-height: 25rem;
+}
+
+/* for small devices */
+@media only screen and (max-width: 600px) {
+  .auth-container {
+    height: 50rem;
+  }
+  .auth-container .card {
+    flex-direction: column;
+    width: 25rem;
+    height: 90vh;
+  }
+  .card_info {
+    gap: 0.5rem;
+    height: 13em;
+    min-width: 20rem;
+    margin: 0 auto;
+    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 5rem;
+  }
+  .card_reverse .card_info {
+    border-bottom-right-radius: 5rem;
+    border-top-left-radius: 1em;
+    height: 25em;
+    padding: 0.8rem;
+    max-height: 25rem;
+  }
+  .card_reverse .card_image,
+  .card_image {
+    position: absolute;
+    top: 1.5rem;
+  }
+
+  .card_image img {
+    width: 8rem;
+    height: 5rem;
+    z-index: 1;
+  }
+}
+
+/* for medium devices */
+
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .auth-container .card {
+    width: 38rem;
+  }
+}
+
+/* for large devices */
+@media only screen and (min-width: 900px) and (max-width: 1200px) {
+  .auth-container .card {
+    width: 45rem;
+  }
+}

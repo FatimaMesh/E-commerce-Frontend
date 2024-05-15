@@ -201,6 +201,7 @@ footer{
   color: white;
   padding: 2rem;
   display: grid;
+  bottom: 0;
   grid-template-columns: repeat(3,33%);
     gap: 1rem;
     justify-content: center;
