@@ -236,6 +236,12 @@ footer .nav-link {
   margin: 0 auto;
 }
 
+.error {
+  font-weight: bold;
+  color: darkred;
+  font-size: 0.6rem;
+}
+
 /* for small devices */
 @media only screen and (max-width: 600px) {
   header {

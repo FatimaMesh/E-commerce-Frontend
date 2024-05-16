@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { MouseEvent, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { BiCart } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
@@ -8,17 +8,29 @@ import { Header } from "@/components/Header"
 import "../style/productDetail.css"
 import { AppDispatch, RootState } from "@/services/store"
 import { fetchSingleProduct } from "@/services/slices/productSlice"
+import dayjs from "dayjs"
 
 const ProductDetail = () => {
-  const { productId } = useParams<{ productId: string }>()
-
+  const { slug } = useParams<{ slug: string }>()
   const dispatch: AppDispatch = useDispatch()
   const { product, isLoading, error } = useSelector((state: RootState) => state.productR)
+
+  const [quantity, setQuantity] = useState<number>(1)
+
+  const increment = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setQuantity(quantity + 1)
+  }
+
+  const decrement = (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault()
+    setQuantity(quantity - 1)
+  }
 
   // fetch product based on productId
   useEffect(() => {
     const fetchDate = async () => {
-      await dispatch(fetchSingleProduct(productId))
+      await dispatch(fetchSingleProduct(slug))
     }
     fetchDate()
   }, [])
@@ -38,15 +50,18 @@ const ProductDetail = () => {
                 <h3 className="title">{product.name}</h3>
                 <p>{product.description}</p>
                 <div>
-                  <p>Gender women</p>
+                  <p>Category : {product.category.name}</p>
+                  <p>Added At : {dayjs(product.createdAt).format("MMM DD YYYY")}</p>
                 </div>
-                <p>price : {product.price} SR</p>
+                <p>{product.price} SR</p>
               </div>
               <form className="action">
                 <div className="quantity">
-                  <button>+</button>
-                  <h3>1</h3>
-                  <button>-</button>
+                  <button onClick={increment}>+</button>
+                  <h3>{quantity}</h3>
+                  <button onClick={decrement} disabled={quantity > 1 ? false : true}>
+                    -
+                  </button>
                 </div>
                 <button className="btn">
                   <BiCart />

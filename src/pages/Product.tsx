@@ -33,8 +33,8 @@ export const Products = () => {
   }, [currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice])
 
   //go to product detail
-  const handleCardClick = (productId: string) => {
-    navigate(`/products/${productId}`)
+  const handleCardClick = (slug: string) => {
+    navigate(`/products/${slug}`)
   }
 
   // Change page number
@@ -136,7 +136,7 @@ export const Products = () => {
             <div
               className="card"
               key={item.productId}
-              onClick={() => handleCardClick(item.productId)}
+              onClick={() => handleCardClick(item.slug)}
             >
               <div className="card-image">
                 <img src={item.image} alt="product image" />

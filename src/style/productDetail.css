@@ -82,6 +82,9 @@
     flex-direction: column;
     height: 120vh;
   }
+  .detail-container img {
+  width: 170px;
+}
 }
 
 /* for medium devices */

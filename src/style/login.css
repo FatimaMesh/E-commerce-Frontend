@@ -86,10 +86,10 @@
 
 .card_reverse {
   flex-direction: row-reverse;
-  height: 25rem;
+  height: 27rem;
 }
 .card_reverse .card_image {
-  top: 2rem;
+  top: 1rem;
 }
 
 .card_reverse .card_info {
@@ -97,8 +97,26 @@
   border-bottom-right-radius: 1rem;
   border-top-left-radius: 5em;
   border-bottom-left-radius: 5rem;
-  height: 25em;
-  max-height: 25rem;
+  height: 27em;
+  max-height: 27rem;
+}
+
+.form .error {
+  margin-top: 0.2rem;
+  margin-bottom: -0.5rem;
+  width: 250px
+}
+.btn_forgot{
+  background-color: transparent;
+  border: none;
+  color: dimgray;
+  font-weight: 500;
+  cursor: pointer;
+}
+.btn_forgot:hover{
+  color: brown;
+  font-size: 0.7rem;
+  text-decoration: underline;
 }
 
 /* for small devices */
@@ -136,6 +154,9 @@
     width: 8rem;
     height: 5rem;
     z-index: 1;
+  }
+  .card_reverse .form .btn{
+    margin-top: -0.2rem;
   }
 }
 

@@ -1,6 +1,7 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+
 import api from "@/api"
 import { FilterType, ProductStates } from "@/types"
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 const initialState: ProductStates = {
   products: [],
@@ -31,8 +32,8 @@ export const fetchProducts = createAsyncThunk(
 
 export const fetchSingleProduct = createAsyncThunk(
   "products/fetchSingleProduct",
-  async (productId: string | undefined) => {
-    const response = await api.get(`/products/${productId}`)
+  async (slug: string | undefined) => {
+    const response = await api.get(`/products/${slug}`)
     return response.data
   }
 )

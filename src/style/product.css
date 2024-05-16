@@ -59,7 +59,7 @@
   width: 100%;
   font-size: 10px;
 }
-.card-text p {
+.product-cards .card-text p {
   text-align: justify;
   height: 10vh;
   overflow: hidden;
@@ -104,20 +104,32 @@
   margin: 2rem auto;
 }
 .category .category-card {
-  width: 260px;
+  text-align: center;
+  width: 300px;
   background-image: url("https://img.lovepik.com/photo/50037/9873.jpg_wh860.jpg");
   background-size: cover;
   padding: 0.3rem;
   border-radius: 20px;
   color: whitesmoke;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+  cursor: pointer;
+  transition: 0.5s linear;
 }
+
 .category .card-text {
   padding: 1rem;
   border-radius: 20px;
   background-color: rgba(0, 0, 0, 0.594);
 }
 
+.category .card-text p {
+  height: 20vh;
+  overflow: hidden;
+}
+
+.category .card-text:hover{
+  background-color: rgba(0, 0, 0, 0.416);
+}
 .pagination{
   display: flex;
   justify-content: center;
@@ -180,6 +192,9 @@
     .product-search form {
     flex-direction: column;
   }
+  .category .card-text p{
+  height: 13vh;
+}
 }
 
 /* for large devices */
@@ -190,4 +205,8 @@
   .card-image img {
     width: 150px;
   }
+    .category .card-text p{
+  height: 15vh;
+}
+
 }
