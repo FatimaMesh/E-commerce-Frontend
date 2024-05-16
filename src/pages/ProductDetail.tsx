@@ -1,45 +1,46 @@
-import { useState } from "react"
+import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { BiCart } from "react-icons/bi"
+import { useDispatch, useSelector } from "react-redux"
 
- import { Footer } from "@/components/Footer"
- import { Header } from "@/components/Header"
-import api from "@/api"
+import { Footer } from "@/components/Footer"
+import { Header } from "@/components/Header"
 import "../style/productDetail.css"
-import { Product } from "@/types"
+import { AppDispatch, RootState } from "@/services/store"
+import { fetchSingleProduct } from "@/services/slices/productSlice"
 
 const ProductDetail = () => {
   const { productId } = useParams<{ productId: string }>()
-  const [productDetail, setProductDetail] = useState<Product>()
 
-  const fetchProductDetail = async () => {
-    try {
-      const response = await api.get(`/products/${productId}`)
-      setProductDetail(response.data.data)
-    } catch (error) {
-      console.error("Error fetching product detail:", error)
+  const dispatch: AppDispatch = useDispatch()
+  const { product, isLoading, error } = useSelector((state: RootState) => state.productR)
+
+  // fetch product based on productId
+  useEffect(() => {
+    const fetchDate = async () => {
+      await dispatch(fetchSingleProduct(productId))
     }
-  }
-
-  fetchProductDetail()
+    fetchDate()
+  }, [])
 
   return (
     <>
       <Header />
       <section className="product-detail">
-        {productDetail && (
-          <div className="detail-container">
+        {isLoading && <p>loading ...</p>}
+        {product && (
+          <div className="detail-container" key={product.productId}>
             <div className="image-detail">
-              <img src={productDetail.image} alt="" />
+              <img src={product.image} alt="" />
             </div>
             <div className="detail">
               <div className="info">
-                <h3 className="title">{productDetail.name}</h3>
-                <p>{productDetail.description}</p>
+                <h3 className="title">{product.name}</h3>
+                <p>{product.description}</p>
                 <div>
                   <p>Gender women</p>
                 </div>
-                <p>price : {productDetail.price} SR</p>
+                <p>price : {product.price} SR</p>
               </div>
               <form className="action">
                 <div className="quantity">
@@ -55,6 +56,7 @@ const ProductDetail = () => {
             </div>
           </div>
         )}
+        {error && <p className="text-red-500">{error}</p>}
       </section>
       <Footer />
     </>

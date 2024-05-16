@@ -23,6 +23,11 @@
   gap: 0.5rem;
 }
 
+.price-range .input{
+  width: 6rem;
+  overflow: scroll;
+}
+
 .product-search .btn {
   padding: 0.5rem;
 }
@@ -41,6 +46,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 50vh;
   gap: 1rem;
   padding: 1rem;
   background-color: white;
@@ -50,8 +56,8 @@
 }
 .card .card-text {
   text-align: center;
-  width: 90%;
-  font-size: 12px;
+  width: 100%;
+  font-size: 10px;
 }
 .card-text p {
   text-align: justify;
@@ -77,8 +83,7 @@
 }
 
 .card-image img {
-  width: 200px;
-  height: 25vh;
+  width: 60%;
   transition: transform 0.5s ease-in-out;
   cursor: pointer;
   border-radius: 50%;
@@ -171,6 +176,9 @@
   .category .category-card {
     width: 200px;
     font-size: 0.7rem;
+  }
+    .product-search form {
+    flex-direction: column;
   }
 }
 

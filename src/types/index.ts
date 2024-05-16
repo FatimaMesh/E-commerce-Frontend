@@ -9,6 +9,23 @@ export type Product = {
   categoryId: string
 }
 
+export interface ProductStates {
+  products: Product[]
+  product: Product | null
+  isLoading: boolean
+  error: string | null
+}
+
+export interface FilterType {
+  currentPage: number
+  itemsPerPage: number
+  keyWord: string | undefined
+  orderBy: number
+  sortBy: number
+  minPrice: number
+  maxPrice: number
+}
+
 export type Category = {
   categoryID: string
   name: string

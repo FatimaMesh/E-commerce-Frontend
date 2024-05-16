@@ -2,6 +2,7 @@ import { FaSignInAlt } from "react-icons/fa";
 
 import logo from "../assets/image/logo.png"
 import { Nav } from "../router/Nav";
+import { Link } from "react-router-dom";
 
 export const Header = () => {
   return (
@@ -11,11 +12,10 @@ export const Header = () => {
       </div>
       <Nav></Nav>
       <div className="btn-container">
-        <button className="btn login-btn">
-          {" "}
+        <Link to="/login" className="btn login-btn">
           <FaSignInAlt />
           Login
-        </button>
+        </Link>
       </div>
     </header>
   );

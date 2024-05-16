@@ -31,7 +31,7 @@ export const CategoryCard = () => {
       ) : (
         <section className="category" id="category">
           {data?.map((item) => (
-            <div className="category-card" key={item.categoryID}>
+            <div className="category-card" key={item.slug}>
               <div className="card-text">
                 <h2 className="category-name">{item.name}</h2>
                 <p>
