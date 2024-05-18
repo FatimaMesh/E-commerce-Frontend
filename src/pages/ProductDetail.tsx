@@ -1,6 +1,6 @@
 import { MouseEvent, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
-import { BiCart } from "react-icons/bi"
+import { BiCart, BiCommentDetail } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 
 import { Footer } from "@/components/Footer"
@@ -13,7 +13,7 @@ import dayjs from "dayjs"
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>()
   const dispatch: AppDispatch = useDispatch()
-  const { product, isLoading, error } = useSelector((state: RootState) => state.productR)
+  const { product, review, isLoading, error } = useSelector((state: RootState) => state.productR)
 
   const [quantity, setQuantity] = useState<number>(1)
 
@@ -72,6 +72,18 @@ const ProductDetail = () => {
           </div>
         )}
         {error && <p className="text-red-500">{error}</p>}
+      </section>
+      <section className="review-product">
+        <h2>
+          <BiCommentDetail /> Review
+        </h2>
+        <div className="review-container">
+          {review?.length ? (
+            review.map((item) => <p key={item.reviewId}>{item.comment}</p>)
+          ) : (
+            <p className="no-review">No Review yet!</p>
+          )}
+        </div>
       </section>
       <Footer />
     </>

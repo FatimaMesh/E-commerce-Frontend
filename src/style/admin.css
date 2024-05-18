@@ -1,0 +1,97 @@
+.dashboard-layout .admin-dashboard {
+  grid-area: main;
+  margin: 1rem 2rem;
+  transition: 0.4s linear;
+}
+.admin-dashboard h1 {
+  border-bottom: 1px solid lightgray;
+  width: 100%;
+}
+
+/* table view  */
+.content {
+  margin-top: 1rem;
+  width: 100%;
+  font-size: small;
+  text-align: center;
+}
+.content thead td {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+  font-weight: bold;
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 1cqb;
+}
+
+.content tbody td {
+  padding: 0.3rem;
+  border-bottom: 1px solid lightgray;
+}
+
+.content tbody td:nth-child(1) {
+  text-align: left;
+  padding-left: 0.5rem;
+}
+
+.content tr:nth-child(odd) {
+  background-color: rgba(213, 213, 203, 0.166);
+}
+
+.content .actions {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.content td.is-banned p {
+  padding: 0.5rem;
+  text-align: center;
+  border-radius: 2rem;
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.content td.is-banned .active-user {
+  background-color: rgba(0, 128, 0, 0.281);
+}
+
+.content td.is-banned .in-active-user {
+  background-color: rgba(163, 59, 33, 0.324);
+}
+.content tfoot td {
+  background-color: rgba(255, 255, 255, 0.567);
+  border-radius: 4rem;
+}
+
+/* for small devices */
+@media only screen and (max-width: 600px) {
+}
+
+/* for medium devices */
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .dashboard-sidebar {
+    width: 14rem;
+  }
+  .user-head h2 {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .user-head p {
+    font-size: 0.6rem;
+    color: grey;
+  }
+  .user-head img {
+    width: 3rem;
+  }
+  .dashboard-layout .admin-dashboard {
+    margin: 0.5rem;
+  }
+  .content {
+    font-size: 0.6rem;
+  }
+}
+
+/* for large devices */
+@media only screen and (min-width: 900px) {
+}

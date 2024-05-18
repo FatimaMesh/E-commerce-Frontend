@@ -3,7 +3,6 @@ import { Link } from "react-router-dom"
 
 import logo from "../../assets/image/logo.png"
 import { BiLogOut, BiSearch } from "react-icons/bi"
-import { FaShoppingCart } from "react-icons/fa"
 
 const Header = () => {
   return (
@@ -13,7 +12,6 @@ const Header = () => {
           <img src={logo} alt="Logo" />
         </Link>
       </div>
-
       <div className="section-2">
         <form action="" method="POST">
           <div className="search-container">
@@ -24,11 +22,7 @@ const Header = () => {
           </div>
         </form>
       </div>
-
       <div className="section-3">
-        <Link to="" className="btn">
-          Cart <FaShoppingCart />
-        </Link>
         <Link to="" className="btn">
           Logout <BiLogOut/>
         </Link>
@@ -38,9 +32,3 @@ const Header = () => {
 }
 
 export default Header
-
-{
-  /* <button className="btn">
-          <BiMenu />
-        </button> */
-}

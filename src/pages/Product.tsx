@@ -1,4 +1,4 @@
-import { BiSearchAlt} from "react-icons/bi"
+import { BiSearchAlt } from "react-icons/bi"
 import { ChangeEvent, useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -19,17 +19,13 @@ export const Products = () => {
 
   const { products, isLoading, error } = useSelector((state: RootState) => state.productR)
   const dispatch: AppDispatch = useDispatch()
-
   const navigate = useNavigate()
 
   // fetch products based on pagination
   useEffect(() => {
-    const fetchDate = async () => {
-      await dispatch(
-        fetchProducts({ currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice })
-      )
-    }
-    fetchDate()
+    dispatch(
+      fetchProducts({ currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice })
+    )
   }, [currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice])
 
   //go to product detail
@@ -44,35 +40,23 @@ export const Products = () => {
 
   // apply searching product
   const handlerKeyword = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    const { value } = e.target
-    setKeyword(value)
+    setKeyword(e.target.value)
   }
 
   // apply searching product
   const handlerPrice = (e: ChangeEvent<HTMLInputElement>) => {
-    e.preventDefault()
-    const price = e.target.name
-    if (price == "min") {
-      setMinPrice(Number(e.target.value))
-      return
+    const { name, value } = e.target
+    if (name == "min") {
+      setMinPrice(Number(value))
+    } else {
+      setMaxPrice(Number(value))
     }
-    setMaxPrice(Number(e.target.value))
   }
 
   // apply sortBy
-  const handlerSort = (e: ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault()
-    const { value } = e.target
-    setSortBy(Number(value))
-  }
-
+  const handlerSort = (e: ChangeEvent<HTMLSelectElement>) => setSortBy(Number(e.target.value))
   // apply orderBy
-  const handlerOrder = (e: ChangeEvent<HTMLSelectElement>) => {
-    e.preventDefault()
-    const { value } = e.target
-    setOrderBy(Number(value))
-  }
+  const handlerOrder = (e: ChangeEvent<HTMLSelectElement>) => setOrderBy(Number(e.target.value))
 
   return (
     <section className="product" id="product">
@@ -132,24 +116,24 @@ export const Products = () => {
         <p>Loading...</p>
       ) : (
         <div className="product-cards">
-          {products?.map((item) => (
-            <div
-              className="card"
-              key={item.productId}
-              onClick={() => handleCardClick(item.slug)}
-            >
-              <div className="card-image">
-                <img src={item.image} alt="product image" />
+          {products?.length ? (
+            products.map((item) => (
+              <div className="card" key={item.productId} onClick={() => handleCardClick(item.slug)}>
+                <div className="card-image">
+                  <img src={item.image} alt="product image" />
+                </div>
+                <div className="card-text">
+                  <h2 className="product-name">{item.name}</h2>
+                </div>
+                <p>{item.price} SR</p>
+                <div className="card-btn">
+                  <button className="btn">Add to cart</button>
+                </div>
               </div>
-              <div className="card-text">
-                <h2 className="product-name">{item.name}</h2>
-              </div>
-              <p>{item.price} SR</p>
-              <div className="card-btn">
-                <button className="btn">Add to cart</button>
-              </div>
-            </div>
-          ))}
+            ))
+          ) : (
+            <div>No products match</div>
+          )}
         </div>
       )}
       <Pagination itemsPerPage={itemsPerPage} totalItems={10} paginate={paginate} />

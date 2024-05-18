@@ -13,7 +13,7 @@ export const Footer = () => {
       <section>
         <p>Quick Link</p>
         <div className="quick-link">
-          <Link to="product" smooth={true} duration={500}  className="nav-link">
+          <Link to="product" smooth={true} duration={500} className="nav-link">
             Product
           </Link>
           <Link to="about" smooth={true} duration={500} className="nav-link">
@@ -25,9 +25,9 @@ export const Footer = () => {
         </div>
       </section>
       <section>
-        <h3>Subscribe</h3>
         <form>
-          <input type="email" className="input" />
+          <label htmlFor="subscribe-email">Subscribe</label>
+          <input type="email" className="input" name="subscribe-email" id="subscribe-email"/>
           <button className="btn">
             <BiSend></BiSend>Send
           </button>

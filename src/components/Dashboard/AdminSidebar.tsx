@@ -1,8 +1,14 @@
 import user from "../../assets/image/user.jpeg"
-import { FaFirstOrder, FaShoppingCart } from "react-icons/fa"
-import { BiComment, BiLogOutCircle, BiSolidUserAccount } from "react-icons/bi"
+import { FaBoxOpen, FaUsers } from "react-icons/fa"
+import {
+  BiCategory,
+  BiLogOutCircle,
+  BiSolidDashboard,
+  BiSolidUserAccount,
+  BiSolidWatch
+} from "react-icons/bi"
 
-const Sidebar = () => {
+const AdminSidebar = () => {
   return (
     <aside className="dashboard-sidebar">
       {/* <!-- SIDEBAR HEADER --> */}
@@ -23,20 +29,28 @@ const Sidebar = () => {
             {/* <!-- Menu Item Dashboard --> */}
             <ul className="menu-list">
               <li>
-                <FaFirstOrder />
-                Orders
+                <BiSolidDashboard />
+                Dashboard
               </li>
               <li>
-                <BiComment />
-                Reviews
+                <FaUsers />
+                Users
+              </li>
+              <li>
+                <BiSolidWatch />
+                Products
+              </li>
+              <li>
+                <BiCategory />
+                Category
+              </li>
+              <li>
+                <FaBoxOpen />
+                Orders
               </li>
               <li>
                 <BiSolidUserAccount />
                 Account Details
-              </li>
-              <li>
-                <FaShoppingCart />
-                Cart
               </li>
               <li>
                 <BiLogOutCircle />
@@ -51,4 +65,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default AdminSidebar

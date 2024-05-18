@@ -1,0 +1,33 @@
+.error-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+background-image: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+    height: 100vh;
+    gap: 1rem;
+}
+
+.error-type{
+    display: flex;
+    font-size: 10rem;
+    justify-content: center;
+    align-items: center;
+        transition: 0.5s linear;
+}
+.error-container img{
+    width: 200px;
+    height: 300px;
+        transition: 0.5s linear;
+}
+
+/* for small devices */
+@media only screen and (max-width: 600px) {
+    .error-type{
+    font-size: 5rem;
+}
+.error-container img{
+    width: 100px;
+    height: 150px;
+}
+}

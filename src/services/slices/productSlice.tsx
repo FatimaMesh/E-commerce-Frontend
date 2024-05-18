@@ -7,6 +7,7 @@ const initialState: ProductStates = {
   products: [],
   product: null,
   isLoading: false,
+  review: [],
   error: null
 }
 
@@ -23,7 +24,7 @@ export const fetchProducts = createAsyncThunk(
   }: FilterType) => {
     let url = `/products?page=${currentPage}&limit=${itemsPerPage}&sortBy=${sortBy}&orderBy=${orderBy}&minPrice=${minPrice}&maxPrice=${maxPrice}`
     if (keyWord) {
-      url += `&keyword=${encodeURIComponent(keyWord)}`
+      url += `&keyword=${keyWord}`
     }
     const response = await api.get(url)
     return response.data
@@ -54,6 +55,7 @@ const productReducer = createSlice({
       })
       .addCase(fetchSingleProduct.fulfilled, (state, action) => {
         state.product = action.payload.data
+        state.review = action.payload.data.reviews.$values
         state.isLoading = false
       })
       .addCase(fetchSingleProduct.rejected, (state, action) => {

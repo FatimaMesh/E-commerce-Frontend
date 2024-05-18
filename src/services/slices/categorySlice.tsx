@@ -28,13 +28,10 @@ const categoryReducer = createSlice({
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          state.error = null
-          state.isLoading = true
-        }
-      )
+      .addCase(fetchCategories.pending, (state) => {
+        state.error = null
+        state.isLoading = true
+      })
   }
 })
 

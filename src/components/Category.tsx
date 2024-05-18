@@ -10,11 +10,12 @@ export const CategoryCard = () => {
   const dispatch: AppDispatch = useDispatch()
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchCategory = async () => {
       await dispatch(fetchCategories())
     }
-    fetchData()
+    fetchCategory();
   }, [])
+  
   return (
     <>
       {isLoading ? (

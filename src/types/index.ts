@@ -17,6 +17,7 @@ export type Product = {
 export interface ProductStates {
   products: Product[]
   product: Product | null
+  review: Review[] | null
   isLoading: boolean
   error: string | null
 }
