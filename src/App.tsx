@@ -1,9 +1,15 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
 
 import "./App.css"
-import { Home, Products, ProductDetail, Error, Account } from "./pages/pages"
-import { AdminDashboard } from "./pages/AdminDashboard"
-import { CustomerDashboard } from "./pages/CustomerDashboard"
+import {
+  Home,
+  Products,
+  ProductDetail,
+  Error,
+  Account,
+  AdminDashboard,
+  CustomerDashboard
+} from "./pages/pages"
 
 function App() {
   return (

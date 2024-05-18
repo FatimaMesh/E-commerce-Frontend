@@ -180,6 +180,9 @@
   .menu-title {
     display: none;
   }
+    .user-head {
+    flex-direction: row;
+}
 }
 
 /* for medium devices */
@@ -190,6 +193,9 @@
   .section-3 .btn {
     font-size: 10px;
   }
+  .user-head {
+    flex-direction: column;
+}
 }
 
 /* for large devices */

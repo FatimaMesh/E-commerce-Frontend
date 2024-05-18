@@ -5,6 +5,7 @@ import "../style/dashboard.css"
 import Header from "@/components/Dashboard/Header"
 import { Footer } from "@/components/Footer"
 import Sidebar from "@/components/Dashboard/Sidebar"
+import { Cart } from "@/components/Cart"
 
 export const CustomerDashboard = () => {
   return (
@@ -13,6 +14,7 @@ export const CustomerDashboard = () => {
         <Header />
         <Sidebar />
         <main>
+          <Cart/>
           {/* <Link to="" className="btn">
             View Shop <BiSolidWatch />
           </Link> */}
