@@ -99,7 +99,7 @@
 }
 
 .review-container .no-review:hover {
- background-color: rgba(211, 211, 211, 0.183);
+  background-color: rgba(211, 211, 211, 0.183);
 }
 
 .review-container p:hover {
@@ -109,7 +109,7 @@
 /* for small devices */
 @media only screen and (max-width: 600px) {
   .product-detail {
-    width: 450px;
+    width: 100%;
     height: 130vh;
     margin: 1rem auto;
   }

@@ -24,7 +24,8 @@ export const LoginForm = () => {
       const response = await dispatch(loginUser(data))
       successMessage(response.payload.message)
       reset()
-      navigate("/dashboard")
+      const userLoggedIn = response.payload.data.userSignIn
+      navigate(userLoggedIn.role === 1 ? "/dashboard/admin" : "/dashboard/customer")
     } catch (error) {
       errorMessage("Error occurred while signIn user")
     }

@@ -37,7 +37,7 @@ const orderItemReducer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCart.fulfilled, (state, action) => {
-        state.orderItems = action.payload.data.$values
+        state.orderItems = action.payload.data
         state.isLoading = false
       })
       .addCase(fetchCart.rejected, (state, action) => {

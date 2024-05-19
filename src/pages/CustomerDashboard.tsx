@@ -1,26 +1,26 @@
-// import { BiSolidWatch } from "react-icons/bi"
-// import { Link } from "react-router-dom"
+import { useState } from "react"
 
 import "../style/dashboard.css"
-import Header from "@/components/Dashboard/Header"
+import {Header} from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import Sidebar from "@/components/Dashboard/Sidebar"
-import { Cart } from "@/components/Cart"
+import { Cart } from "@/components/Dashboard/Customer/Cart"
+import { Shop } from "@/components/Dashboard/Customer/Shop"
+import { PageContext } from "@/context/PageContext"
 
 export const CustomerDashboard = () => {
+  const [openPage, setOpenPage] = useState<string>("shop")
   return (
-    <>
-      <div className="dashboard-layout">
-        <Header />
+    <PageContext.Provider value={{ openPage, setOpenPage }}>
+      <Header/>
+      <section className="dashboard-layout container">
         <Sidebar />
         <main>
-          <Cart/>
-          {/* <Link to="" className="btn">
-            View Shop <BiSolidWatch />
-          </Link> */}
+          {openPage === "cart" && <Cart />}
+          {openPage === "shop" && <Shop />}
         </main>
-      </div>
+      </section>
       <Footer />
-    </>
+    </PageContext.Provider>
   )
 }

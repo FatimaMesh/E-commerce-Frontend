@@ -21,7 +21,7 @@ const categoryReducer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchCategories.fulfilled, (state, action) => {
-        state.categories = action.payload.data.$values
+        state.categories = action.payload.data
         state.isLoading = false
       })
       .addCase(fetchCategories.rejected, (state, action) => {

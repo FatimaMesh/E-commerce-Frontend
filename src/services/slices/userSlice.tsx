@@ -7,7 +7,16 @@ const initialState: UserState = {
   users: [],
   user: null,
   isLoading: false,
+  isLoggedIn: false,
   error: null
+}
+
+// Load state from localStorage if it exists
+const savedState = localStorage.getItem("loginUserData")
+if (savedState) {
+  const parsedState = JSON.parse(savedState)
+  initialState.user = parsedState.user
+  initialState.isLoggedIn = parsedState.isLoggedIn
 }
 
 export const registerUser = createAsyncThunk("users/registerUser", async (data: FormRegister) => {
@@ -24,7 +33,7 @@ export const loginUser = createAsyncThunk("users/loginUser", async (data: FormLo
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  async ({ currentPage, itemsPerPage }: {currentPage:number, itemsPerPage:number}) => {
+  async ({ currentPage, itemsPerPage }: { currentPage: number; itemsPerPage: number }) => {
     const token = localStorage.getItem("token")
     if (!token) {
       throw new Error("No token available")
@@ -35,8 +44,6 @@ export const fetchUsers = createAsyncThunk(
       }
     }
     const response = await api.get(`/users?page=${currentPage}&limit=${itemsPerPage}`, config)
-    const users = response.data.$values
-    console.log(users)
     return response.data
   }
 )
@@ -44,16 +51,37 @@ export const fetchUsers = createAsyncThunk(
 const userReducer = createSlice({
   name: "users",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    logout(state) {
+      state.user = null
+      state.isLoggedIn = false
+      localStorage.removeItem("loginUserData")
+      localStorage.removeItem("token")
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.users = action.payload.data.$values
+        state.users = action.payload.data
         state.isLoading = false
       })
       .addCase(fetchUsers.rejected, (state, action) => {
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
+      })
+      .addCase(loginUser.fulfilled, (state, action) => {
+        state.user = action.payload.data.userSignIn
+        state.isLoggedIn = true
+        localStorage.setItem(
+          "loginUserData",
+          JSON.stringify({
+            user: state.user,
+            isLoggedIn: state.isLoggedIn
+          })
+        )
+      })
+      .addCase(loginUser.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
       })
       .addMatcher(
         (action) => action.type.endsWith("/pending"),
@@ -64,5 +92,7 @@ const userReducer = createSlice({
       )
   }
 })
+
+export const { logout } = userReducer.actions
 
 export default userReducer.reducer

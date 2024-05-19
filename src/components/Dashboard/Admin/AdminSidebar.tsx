@@ -1,19 +1,19 @@
-import { FaFirstOrder, FaShoppingCart } from "react-icons/fa"
-import { BiComment, BiSolidUserAccount, BiSolidWatch } from "react-icons/bi"
 import { useSelector } from "react-redux"
 
-import userIcon from "../../assets/image/user.jpeg"
+import userIcon from "../../../assets/image/user.jpeg"
+import { FaBoxOpen, FaUsers } from "react-icons/fa"
+import { BiCategory, BiSolidDashboard, BiSolidUserAccount, BiSolidWatch } from "react-icons/bi"
 import { usePage } from "@/context/PageContext"
 import { RootState } from "@/services/store"
 
-const Sidebar = () => {
+const AdminSidebar = () => {
   const { openPage, setOpenPage } = usePage()
   const { user } = useSelector((state: RootState) => state.userR)
 
   return (
     <aside className="dashboard-sidebar">
       {/* <!-- SIDEBAR HEADER --> */}
-      <section className="user-head" onClick={() => setOpenPage("account")}>
+      <section className="user-head">
         <img src={userIcon} alt="Logo" />
         <div>
           <h2>{user?.fullName}</h2>
@@ -30,25 +30,39 @@ const Sidebar = () => {
             {/* <!-- Menu Item Dashboard --> */}
             <ul className="menu-list">
               <li
-                onClick={() => setOpenPage("shop")}
-                className={openPage === "shop" ? "open-sidebar" : ""}
+                onClick={() => setOpenPage("dashboard")}
+                className={openPage === "dashboard" ? "open-sidebar" : ""}
+              >
+                <BiSolidDashboard />
+                dashboard
+              </li>
+              <li
+                onClick={() => setOpenPage("users")}
+                className={openPage === "users" ? "open-sidebar" : ""}
+              >
+                <FaUsers />
+                Users
+              </li>
+              <li
+                onClick={() => setOpenPage("product")}
+                className={openPage === "product" ? "open-sidebar" : ""}
               >
                 <BiSolidWatch />
-                Shop
+                Products
               </li>
               <li
-                onClick={() => setOpenPage("order")}
-                className={openPage === "order" ? "open-sidebar" : ""}
+                onClick={() => setOpenPage("category")}
+                className={openPage === "category" ? "open-sidebar" : ""}
               >
-                <FaFirstOrder />
+                <BiCategory />
+                Category
+              </li>
+              <li
+                onClick={() => setOpenPage("orders")}
+                className={openPage === "orders" ? "open-sidebar" : ""}
+              >
+                <FaBoxOpen />
                 Orders
-              </li>
-              <li
-                onClick={() => setOpenPage("review")}
-                className={openPage === "review" ? "open-sidebar" : ""}
-              >
-                <BiComment />
-                Reviews
               </li>
               <li
                 onClick={() => setOpenPage("account")}
@@ -56,13 +70,6 @@ const Sidebar = () => {
               >
                 <BiSolidUserAccount />
                 Account
-              </li>
-              <li
-                onClick={() => setOpenPage("cart")}
-                className={openPage === "cart" ? "open-sidebar" : ""}
-              >
-                <FaShoppingCart />
-                Cart
               </li>
             </ul>
           </div>
@@ -73,4 +80,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default AdminSidebar

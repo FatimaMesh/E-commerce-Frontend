@@ -6,12 +6,14 @@ import { CategoryCard } from "../components/Category"
 
 export const Home = () => {
   return (
-    <main className="container">
+    <>
       <Header />
-      <HeroSection />
-      <CategoryCard />
-      <Products />
+      <main className="container">
+        <HeroSection />
+        <CategoryCard />
+        <Products />
+      </main>
       <Footer />
-    </main>
+    </>
   )
 }

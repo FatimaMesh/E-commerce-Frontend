@@ -59,8 +59,8 @@ export const Products = () => {
   const handlerOrder = (e: ChangeEvent<HTMLSelectElement>) => setOrderBy(Number(e.target.value))
 
   return (
-    <section className="product" id="product">
-      <div className="product-search">
+    <>
+      <div className="product-search product-filter">
         <form>
           <span>
             <h2>
@@ -78,12 +78,12 @@ export const Products = () => {
           </span>
           <span>
             <label htmlFor="orderBy">OrderBy</label>
-            <select value={orderBy} className="input" onChange={handlerOrder}>
+            <select value={orderBy} onChange={handlerOrder}>
               <option value={0}>ASC</option>
               <option value={1}>DESC</option>
             </select>
             <label htmlFor="sortBy">SortBy</label>
-            <select value={sortBy} className="input" onChange={handlerSort}>
+            <select value={sortBy} onChange={handlerSort}>
               <option value={1}>Date</option>
               <option value={0}>Name</option>
             </select>
@@ -94,7 +94,6 @@ export const Products = () => {
               type="text"
               id="min"
               name="min"
-              className="input"
               placeholder="Min Price"
               onChange={handlerPrice}
               value={minPrice}
@@ -104,7 +103,6 @@ export const Products = () => {
               type="text"
               id="max"
               name="max"
-              className="input"
               placeholder="Max Price"
               onChange={handlerPrice}
               value={maxPrice}
@@ -112,32 +110,38 @@ export const Products = () => {
           </span>
         </form>
       </div>
-      {isLoading ? (
-        <p>Loading...</p>
-      ) : (
-        <div className="product-cards">
-          {products?.length ? (
-            products.map((item) => (
-              <div className="card" key={item.productId} onClick={() => handleCardClick(item.slug)}>
-                <div className="card-image">
-                  <img src={item.image} alt="product image" />
+      <section className="product" id="product">
+        {isLoading ? (
+          <p>Loading...</p>
+        ) : (
+          <div className="product-cards">
+            {products?.length ? (
+              products.map((item) => (
+                <div
+                  className="card"
+                  key={item.productId}
+                  onClick={() => handleCardClick(item.slug)}
+                >
+                  <div className="card-image">
+                    <img src={item.image} alt="product image" />
+                  </div>
+                  <div className="card-text">
+                    <h2 className="product-name">{item.name}</h2>
+                  </div>
+                  <p>{item.price} SR</p>
+                  <div className="card-btn">
+                    <button className="btn">Add to cart</button>
+                  </div>
                 </div>
-                <div className="card-text">
-                  <h2 className="product-name">{item.name}</h2>
-                </div>
-                <p>{item.price} SR</p>
-                <div className="card-btn">
-                  <button className="btn">Add to cart</button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <div>No products match</div>
-          )}
-        </div>
-      )}
-      <Pagination itemsPerPage={itemsPerPage} totalItems={10} paginate={paginate} />
-      {error && <p className="text-red-500">{error}</p>}
-    </section>
+              ))
+            ) : (
+              <div>No products match</div>
+            )}
+          </div>
+        )}
+        <Pagination itemsPerPage={itemsPerPage} totalItems={10} paginate={paginate} />
+        {error && <p className="text-red-500">{error}</p>}
+      </section>
+    </>
   )
 }

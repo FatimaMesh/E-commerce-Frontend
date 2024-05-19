@@ -10,8 +10,8 @@ export type Product = {
   categoryId: string
 
   category: Category
-  reviews: Review[] 
-  orderItems: OrderItem[] 
+  reviews: Review[]
+  orderItems: OrderItem[]
 }
 
 export interface ProductStates {
@@ -65,12 +65,12 @@ export type User = {
   reviews: Review[]
 }
 
-
 export type UserState = {
   users: User[]
   user: User | null
   isLoading: boolean
   error: string | null
+  isLoggedIn: boolean
 }
 
 export type FormRegister = {

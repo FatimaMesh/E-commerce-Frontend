@@ -46,7 +46,7 @@ const productReducer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchProducts.fulfilled, (state, action) => {
-        state.products = action.payload.data.$values
+        state.products = action.payload.data
         state.isLoading = false
       })
       .addCase(fetchProducts.rejected, (state, action) => {
@@ -55,7 +55,7 @@ const productReducer = createSlice({
       })
       .addCase(fetchSingleProduct.fulfilled, (state, action) => {
         state.product = action.payload.data
-        state.review = action.payload.data.reviews.$values
+        state.review = action.payload.data.reviews
         state.isLoading = false
       })
       .addCase(fetchSingleProduct.rejected, (state, action) => {

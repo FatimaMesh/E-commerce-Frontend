@@ -1,13 +1,14 @@
 .product {
-  width: 90%;
-  margin: 2rem auto;
-  border: 0.1rem double var(--color);
+  margin: 1rem auto;
+  max-width: 1200px;
 }
 .product-search {
+  max-width: 1200px;
+  width: 600px;
+  margin: 1rem auto;
   border-bottom: 0.2rem double lightgray;
 }
 .product-search form {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -20,17 +21,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.4rem;
 }
 
-.price-range .input{
-  width: 6rem;
+.product-search select,
+input {
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
+  padding: 0.2rem;
+  border: 1px solid lightgrey;
+  border-radius: 10px;
+}
+
+.price-range input {
+  width: 5rem;
   overflow: scroll;
 }
 
-.product-search .btn {
-  padding: 0.5rem;
-}
 .product-cards {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -127,17 +134,17 @@
   overflow: hidden;
 }
 
-.category .card-text:hover{
+.category .card-text:hover {
   background-color: rgba(0, 0, 0, 0.416);
 }
-.pagination{
+.pagination {
   display: flex;
   justify-content: center;
   list-style: none;
   padding: 0.5rem;
   gap: 0.2rem;
 }
-.page-item .page-link{
+.page-item .page-link {
   padding: 0 0.5rem;
   font-size: 1rem;
   border: none;
@@ -145,23 +152,23 @@
   transition: 0.3s ease-out;
 }
 
-.page-item .page-link:hover{
-  color:coral;
+.page-item .page-link:hover {
+  color: coral;
   font-size: 1.1rem;
 }
-
 
 /* for small devices */
 @media only screen and (max-width: 600px) {
   .product-cards {
-    grid-template-columns: repeat(1, minmax(0, 1fr));
+    grid-template-columns: repeat(1, minmax(0, 0.9fr));
   }
   .card-btn .btn {
     width: 5.5rem;
   }
 
   .card-image img {
-    width: 180px;
+    width: 110px;
+    height: 25vh;
   }
   .product-search form {
     flex-direction: column;
@@ -173,6 +180,9 @@
   }
   .category .card-text p {
     display: none;
+  }
+  .product-search {
+    width: 100%;
   }
 }
 
@@ -189,12 +199,15 @@
     width: 200px;
     font-size: 0.7rem;
   }
-    .product-search form {
+  .product-search {
+    width: 400px;
+  }
+  .product-search form {
     flex-direction: column;
   }
-  .category .card-text p{
-  height: 13vh;
-}
+  .category .card-text p {
+    height: 13vh;
+  }
 }
 
 /* for large devices */
@@ -205,8 +218,10 @@
   .card-image img {
     width: 150px;
   }
-    .category .card-text p{
-  height: 15vh;
-}
-
+  .category .card-text p {
+    height: 15vh;
+  }
+  .product-search {
+    font-size: 0.9rem;
+  }
 }

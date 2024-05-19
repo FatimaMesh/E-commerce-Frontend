@@ -1,26 +1,17 @@
-import {
-  FaAddressCard,
-  FaApple,
-  FaApplePay,
-  FaBackward,
-  FaOpencart,
-  FaPlaceOfWorship,
-  FaRegAddressBook,
-  FaRegCreditCard,
-  FaTrash
-} from "react-icons/fa"
+import { FaApple, FaBackward, FaOpencart, FaRegCreditCard, FaTrash } from "react-icons/fa"
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
+import { BiMoney } from "react-icons/bi"
 
 import { fetchCart } from "@/services/slices/orderItemsSlice"
 import { AppDispatch, RootState } from "@/services/store"
-import "../style/customer.css"
-import { BiCurrentLocation, BiLocationPlus, BiMoney, BiSolidLocationPlus } from "react-icons/bi"
-import { Link } from "react-router-dom"
+import "../../../style/customer.css"
+import { usePage } from "@/context/PageContext"
 
 export const Cart = () => {
   const { orderItems, isLoading } = useSelector((state: RootState) => state.orderItemR)
   const dispatch: AppDispatch = useDispatch()
+  const { setOpenPage } = usePage()
 
   useEffect(() => {
     const fetchCartItem = async () => {
@@ -38,7 +29,6 @@ export const Cart = () => {
         <thead>
           <tr>
             <td colSpan={2}>Product</td>
-            <td>Price</td>
             <td>Quantity</td>
             <td className="cart-total">Total</td>
             <td></td>
@@ -53,8 +43,6 @@ export const Cart = () => {
                 </td>
                 <td>
                   <p>{item.product.name}</p>
-                </td>
-                <td>
                   <p>{item.price} SR</p>
                 </td>
                 <td>
@@ -71,7 +59,11 @@ export const Cart = () => {
               </tr>
             ))
           ) : (
-            <tr><td colSpan={6} className="no-content">Cart is empty</td></tr>
+            <tr>
+              <td colSpan={6} className="no-content">
+                Cart is empty
+              </td>
+            </tr>
           )}
         </tbody>
         <tfoot>
@@ -106,9 +98,9 @@ export const Cart = () => {
                   </div>
                 </section>
                 <section className="confirm-order">
-                  <Link to="" className="nav-link">
+                  <p className="nav-link" onClick={() => setOpenPage("shop")}>
                     <FaBackward /> Back to shop
-                  </Link>
+                  </p>
                   <button type="submit" className="btn">
                     Checkout
                   </button>
