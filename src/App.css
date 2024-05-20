@@ -24,6 +24,7 @@ header {
 header .header-navbar {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .header-navbar span {
   display: flex;
@@ -330,6 +331,12 @@ footer .nav-link {
   }
   header .nav-link {
     font-size: 12px;
+  }
+  footer {
+    font-size: 15px;
+  }
+  footer img {
+    width: 5rem;
   }
 }
 

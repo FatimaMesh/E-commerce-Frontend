@@ -5,7 +5,6 @@ import { BiMoney } from "react-icons/bi"
 
 import { fetchCart } from "@/services/slices/orderItemsSlice"
 import { AppDispatch, RootState } from "@/services/store"
-import "../../../style/customer.css"
 import { usePage } from "@/context/PageContext"
 
 export const Cart = () => {
