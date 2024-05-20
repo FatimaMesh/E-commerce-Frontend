@@ -45,16 +45,20 @@
 .checkout {
   padding: 1rem;
 }
+.cart-card tfoot td {
+  text-align: left;
+}
 .address-info,
 .payment-info {
   display: flex;
+  background-color: rgba(109, 111, 111, 0.033);
   justify-content: space-between;
+  border-radius: 1rem;
   align-items: center;
   margin-bottom: 1rem;
   gap: 1rem;
 }
 .payment-method div {
-  text-align: left;
   margin: 1rem;
 }
 .confirm-order {
@@ -99,6 +103,10 @@
 .order-card .delete-btn:hover {
   color: goldenrod;
   transform: scale(1.2);
+}
+.order-card .no-content{
+  display: flex;
+  justify-content: space-between;
 }
 /* end order */
 

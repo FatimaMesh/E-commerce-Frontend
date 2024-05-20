@@ -14,11 +14,20 @@ export type Product = {
   orderItems: OrderItem[]
 }
 
+export type FormProduct = {
+  name: string
+  image: string
+  description: string
+  price: number
+  categoryId: string
+}
+
 export interface ProductStates {
   products: Product[]
   product: Product | null
-  review: Review[] | null
+  reviews: Review[] | null
   isLoading: boolean
+  totalItems:number
   error: string | null
 }
 

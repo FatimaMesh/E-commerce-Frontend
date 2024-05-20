@@ -6,9 +6,10 @@ import "../style/dashboard.css"
 import { useState } from "react"
 import { PageContext } from "@/context/PageContext"
 import { Users } from "@/components/Dashboard/Admin/Users"
+import { Products } from "@/components/Dashboard/Admin/Products"
 
 export const AdminDashboard = () => {
-  const [openPage, setOpenPage] = useState<string>("shop")
+  const [openPage, setOpenPage] = useState<string>("dashboard")
 
   return (
     <PageContext.Provider value={{ openPage, setOpenPage }}>
@@ -17,6 +18,7 @@ export const AdminDashboard = () => {
         <AdminSidebar />
         <main className="admin-dashboard">
           {openPage === "users" && <Users />}
+          {openPage === "products" && <Products />}
         </main>
       </div>
       <Footer />

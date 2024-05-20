@@ -34,7 +34,7 @@ const AdminSidebar = () => {
                 className={openPage === "dashboard" ? "open-sidebar" : ""}
               >
                 <BiSolidDashboard />
-                dashboard
+                Dashboard
               </li>
               <li
                 onClick={() => setOpenPage("users")}
@@ -44,8 +44,8 @@ const AdminSidebar = () => {
                 Users
               </li>
               <li
-                onClick={() => setOpenPage("product")}
-                className={openPage === "product" ? "open-sidebar" : ""}
+                onClick={() => setOpenPage("products")}
+                className={openPage === "products" ? "open-sidebar" : ""}
               >
                 <BiSolidWatch />
                 Products

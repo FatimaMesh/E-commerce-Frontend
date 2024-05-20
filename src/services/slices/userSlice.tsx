@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 import api from "@/api"
 import { FormLogin, FormRegister, UserState } from "@/types"
+import { TokenConfig } from "../TokenConfig"
 
 const initialState: UserState = {
   users: [],
@@ -34,15 +35,7 @@ export const loginUser = createAsyncThunk("users/loginUser", async (data: FormLo
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async ({ currentPage, itemsPerPage }: { currentPage: number; itemsPerPage: number }) => {
-    const token = localStorage.getItem("token")
-    if (!token) {
-      throw new Error("No token available")
-    }
-    const config = {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    }
+    const config = TokenConfig()
     const response = await api.get(`/users?page=${currentPage}&limit=${itemsPerPage}`, config)
     return response.data
   }

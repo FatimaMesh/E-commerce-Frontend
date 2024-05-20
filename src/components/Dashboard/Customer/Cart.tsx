@@ -38,7 +38,7 @@ export const Cart = () => {
             orderItems.map((item) => (
               <tr key={item.orderItemId}>
                 <td>
-                  <img src={item.product.image} alt="product image" />
+                  <img src={item.product.image} alt={item.product.description} />
                 </td>
                 <td>
                   <p>{item.product.name}</p>

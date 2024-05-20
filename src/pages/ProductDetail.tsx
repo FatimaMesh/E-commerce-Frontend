@@ -13,7 +13,7 @@ import { fetchSingleProduct } from "@/services/slices/productSlice"
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>()
   const dispatch: AppDispatch = useDispatch()
-  const { product, review, isLoading, error } = useSelector((state: RootState) => state.productR)
+  const { product, reviews, isLoading, error } = useSelector((state: RootState) => state.productR)
 
   const [quantity, setQuantity] = useState<number>(1)
 
@@ -44,7 +44,7 @@ const ProductDetail = () => {
           {product && (
             <div className="detail-container" key={product.productId}>
               <div className="image-detail">
-                <img src={product.image} alt="" />
+                <img src={product.image} alt={product.description} />
               </div>
               <div className="detail">
                 <div className="info">
@@ -79,8 +79,8 @@ const ProductDetail = () => {
             <BiCommentDetail /> Review
           </h2>
           <div className="review-container">
-            {review?.length ? (
-              review.map((item) => <p key={item.reviewId}>{item.comment}</p>)
+            {reviews?.length ? (
+              reviews.map((item) => <p key={item.reviewId}>{item.comment}</p>)
             ) : (
               <p className="no-review">No Review yet!</p>
             )}

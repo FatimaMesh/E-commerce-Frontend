@@ -17,7 +17,9 @@ export const Products = () => {
   const [minPrice, setMinPrice] = useState<number>(1)
   const [maxPrice, setMaxPrice] = useState<number>(2000000)
 
-  const { products, isLoading, error } = useSelector((state: RootState) => state.productR)
+  const { products, totalItems, isLoading, error } = useSelector(
+    (state: RootState) => state.productR
+  )
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -26,7 +28,7 @@ export const Products = () => {
     dispatch(
       fetchProducts({ currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice })
     )
-  }, [currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice])
+  }, [currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice, totalItems])
 
   //go to product detail
   const handleCardClick = (slug: string) => {
@@ -78,12 +80,12 @@ export const Products = () => {
           </span>
           <span>
             <label htmlFor="orderBy">OrderBy</label>
-            <select value={orderBy} onChange={handlerOrder}>
+            <select value={orderBy} onChange={handlerOrder} id="orderBy">
               <option value={0}>ASC</option>
               <option value={1}>DESC</option>
             </select>
             <label htmlFor="sortBy">SortBy</label>
-            <select value={sortBy} onChange={handlerSort}>
+            <select value={sortBy} onChange={handlerSort} id="sortBy">
               <option value={1}>Date</option>
               <option value={0}>Name</option>
             </select>
@@ -123,7 +125,7 @@ export const Products = () => {
                   onClick={() => handleCardClick(item.slug)}
                 >
                   <div className="card-image">
-                    <img src={item.image} alt="product image" />
+                    <img src={item.image} alt={item.description} />
                   </div>
                   <div className="card-text">
                     <h2 className="product-name">{item.name}</h2>
@@ -139,7 +141,7 @@ export const Products = () => {
             )}
           </div>
         )}
-        <Pagination itemsPerPage={itemsPerPage} totalItems={10} paginate={paginate} />
+        <Pagination itemsPerPage={itemsPerPage} totalItems={totalItems} paginate={paginate} />
         {error && <p className="text-red-500">{error}</p>}
       </section>
     </>
