@@ -7,6 +7,7 @@ import { useState } from "react"
 import { PageContext } from "@/context/PageContext"
 import { Users } from "@/components/Dashboard/Admin/Users"
 import { Products } from "@/components/Dashboard/Admin/Products"
+import { Profile } from "@/components/Dashboard/Profile"
 
 export const AdminDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("dashboard")
@@ -19,6 +20,7 @@ export const AdminDashboard = () => {
         <main className="admin-dashboard">
           {openPage === "users" && <Users />}
           {openPage === "products" && <Products />}
+          {openPage === "account" && <Profile />}
         </main>
       </div>
       <Footer />

@@ -1,0 +1,130 @@
+.user-profile {
+  position: relative;
+  background-color: white;
+  width: 700px;
+  margin: 1rem auto;
+  text-align: center;
+  padding: 1rem;
+  z-index: 1;
+  border-radius: 1rem;
+  box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px,
+    rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+}
+.user-profile form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  align-items: center;
+  gap: 1rem;
+}
+.user-profile form .field {
+  display: flex;
+  width: 80%;
+  gap: 0.5rem;
+  text-align: left;
+  margin: 0 auto;
+  flex-direction: column;
+}
+
+.user-profile .btn_container {
+  grid-column: span 2;
+  margin: 1rem auto;
+}
+.password-form-btn {
+  display: flex;
+  gap: 1rem;
+}
+.user-profile h2 {
+  font-weight: 800;
+  color: white;
+  margin-bottom: 1.6rem;
+}
+
+.profile-background {
+  background-image: linear-gradient(
+      135deg,
+      rgba(180, 142, 8, 0.2) 0%,
+      rgba(180, 142, 8, 0.2) 16.667%,
+      rgba(195, 74, 7, 0.2) 16.667%,
+      rgba(195, 74, 7, 0.2) 33.334%,
+      rgba(190, 97, 7, 0.2) 33.334%,
+      rgba(190, 97, 7, 0.2) 50.001%,
+      rgba(175, 165, 9, 0.2) 50.001%,
+      rgba(175, 165, 9, 0.2) 66.668%,
+      rgba(170, 188, 9, 0.2) 66.668%,
+      rgba(170, 188, 9, 0.2) 83.335%,
+      rgba(185, 120, 8, 0.2) 83.335%,
+      rgba(185, 120, 8, 0.2) 100.002%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(180, 142, 8, 0.2) 0%,
+      rgba(180, 142, 8, 0.2) 16.667%,
+      rgba(195, 74, 7, 0.2) 16.667%,
+      rgba(195, 74, 7, 0.2) 33.334%,
+      rgba(190, 97, 7, 0.2) 33.334%,
+      rgba(190, 97, 7, 0.2) 50.001%,
+      rgba(175, 165, 9, 0.2) 50.001%,
+      rgba(175, 165, 9, 0.2) 66.668%,
+      rgba(170, 188, 9, 0.2) 66.668%,
+      rgba(170, 188, 9, 0.2) 83.335%,
+      rgba(185, 120, 8, 0.2) 83.335%,
+      rgba(185, 120, 8, 0.2) 100.002%
+    ),
+    linear-gradient(
+      45deg,
+      rgba(180, 142, 8, 0.2) 0%,
+      rgba(180, 142, 8, 0.2) 16.667%,
+      rgba(195, 74, 7, 0.2) 16.667%,
+      rgba(195, 74, 7, 0.2) 33.334%,
+      rgba(190, 97, 7, 0.2) 33.334%,
+      rgba(190, 97, 7, 0.2) 50.001%,
+      rgba(175, 165, 9, 0.2) 50.001%,
+      rgba(175, 165, 9, 0.2) 66.668%,
+      rgba(170, 188, 9, 0.2) 66.668%,
+      rgba(170, 188, 9, 0.2) 83.335%,
+      rgba(185, 120, 8, 0.2) 83.335%,
+      rgba(185, 120, 8, 0.2) 100.002%
+    ),
+    linear-gradient(90deg, rgb(233, 192, 114), rgb(236, 17, 0));
+  box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
+  position: absolute;
+  width: 90%;
+  top: 0;
+  border-radius: 1rem;
+  left: 2rem;
+  height: 20vh;
+  z-index: -1;
+}
+
+#join-date {
+  flex-direction: row;
+  margin-top: 9%;
+  align-items: center;
+}
+
+/* for small devices */
+@media only screen and (max-width: 600px) {
+  .user-profile {
+    width: 90%;
+  }
+  .user-profile form {
+    gap: 0.5rem;
+  }
+  .user-profile h2 {
+    margin-bottom: 2rem;
+  }
+}
+
+/* for medium devices */
+@media only screen and (min-width: 600px) and (max-width: 900px) {
+  .user-profile {
+    width: 590px;
+  }
+}
+
+/* for large devices */
+@media only screen and (min-width: 900px) {
+  .user-profile {
+    width: 690px;
+  }
+}

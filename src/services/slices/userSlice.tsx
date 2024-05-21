@@ -4,6 +4,8 @@ import api from "@/api"
 import { FormLogin, FormRegister, UserState } from "@/types"
 import { TokenConfig } from "../TokenConfig"
 import { UserBehavior } from "@/components/Dashboard/Admin/UpdateUser"
+import { FormUpdateProfile } from "@/components/Dashboard/Profile"
+import { FormUpdatePassword } from "@/components/Dashboard/UpdatePassword"
 
 const initialState: UserState = {
   users: [],
@@ -43,11 +45,42 @@ export const fetchUsers = createAsyncThunk(
   }
 )
 
+export const updateProfile = createAsyncThunk(
+  "users/updateProfile",
+  async ({
+    userProfile,
+    userId
+  }: {
+    userProfile: FormUpdateProfile
+    userId: string | undefined
+  }) => {
+    const config = TokenConfig()
+    const response = await api.put(`/users/${userId}`, userProfile, config)
+    return response.data
+  }
+)
+
 export const updateUserBehavior = createAsyncThunk(
   "users/updateUserBehavior",
   async ({ userBehavior, userId }: { userBehavior: UserBehavior; userId: string | undefined }) => {
     const config = TokenConfig()
     const response = await api.put(`/users/${userId}/status`, userBehavior, config)
+    console.log(response.data)
+    return response.data
+  }
+)
+
+export const updateUserPassword = createAsyncThunk(
+  "users/updateUserPassword",
+  async ({
+    userPassword,
+    userId
+  }: {
+    userPassword: FormUpdatePassword
+    userId: string | undefined
+  }) => {
+    const config = TokenConfig()
+    const response = await api.put(`/users/${userId}/updatePassword`, userPassword, config)
     console.log(response.data)
     return response.data
   }
@@ -97,6 +130,25 @@ const userReducer = createSlice({
         state.isLoading = false
       })
 
+      .addCase(updateProfile.fulfilled, (state, action) => {
+        const updatedUser = action.payload.data
+        state.users = state.users.map((user) =>
+          user.userId === updatedUser.userId ? updatedUser : user
+        )
+        state.user = updatedUser
+        localStorage.setItem(
+          "loginUserData",
+          JSON.stringify({
+            user: state.user
+          })
+        )
+        state.isLoading = false
+      })
+      .addCase(updateProfile.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
+      })
+
       .addCase(deleteUser.fulfilled, (state, action) => {
         state.users = state.users.filter((user) => user.userId !== action.payload.data)
         state.isLoading = false
@@ -105,6 +157,7 @@ const userReducer = createSlice({
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })
+
       .addCase(loginUser.fulfilled, (state, action) => {
         state.user = action.payload.data.userSignIn
         state.isLoggedIn = true

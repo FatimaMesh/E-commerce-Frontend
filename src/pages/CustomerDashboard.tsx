@@ -9,6 +9,7 @@ import { Cart } from "@/components/Dashboard/Customer/Cart"
 import { Shop } from "@/components/Dashboard/Customer/Shop"
 import { PageContext } from "@/context/PageContext"
 import { Order } from "@/components/Dashboard/Customer/Order"
+import { Profile } from "@/components/Dashboard/Profile"
 
 export const CustomerDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("shop")
@@ -21,6 +22,7 @@ export const CustomerDashboard = () => {
           {openPage === "cart" && <Cart />}
           {openPage === "shop" && <Shop />}
           {openPage === "order" && <Order />}
+          {openPage === "account" && <Profile />}
         </main>
       </section>
       <Footer />
