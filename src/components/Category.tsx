@@ -1,9 +1,10 @@
-import { useEffect } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 
 import "../style/product.css"
 import { AppDispatch, RootState } from "@/services/store"
 import { fetchCategories } from "@/services/slices/categorySlice"
+import Popup from "./Popup"
 
 export const CategoryCard = () => {
   const { categories, isLoading, error } = useSelector((state: RootState) => state.categoryR)
@@ -13,26 +14,50 @@ export const CategoryCard = () => {
     const fetchCategory = async () => {
       await dispatch(fetchCategories())
     }
-    fetchCategory();
+    fetchCategory()
   }, [])
-  
+
+  //popup window for add/edit/delete product
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [popupContent, setPopupContent] = useState<ReactNode | null>(null)
+
+  const handleOpenPopup = (content: ReactNode) => {
+    setPopupContent(content)
+    setIsPopupOpen(true)
+  }
+
+  const handleClosePopup = () => {
+    setPopupContent(null)
+    setIsPopupOpen(false)
+  }
+
   return (
     <>
+      <h1 className="category-home">What are you shopping for today?</h1>
       {isLoading ? (
         <p>Loading...</p>
       ) : (
         <section className="category" id="category">
           {categories?.map((item) => (
-            <div className="category-card" key={item.slug}>
+            <div
+              className="category-card"
+              key={item.slug}
+              onClick={() =>
+                handleOpenPopup(
+                  <div className="popup-window popup-description">{item.description}</div>
+                )
+              }
+            >
               <div className="card-text">
                 <h2 className="category-name">{item.name}</h2>
-                <p>{item.description}</p>
+                {/* <p>{item.description}</p> */}
               </div>
             </div>
           ))}
           {error && <p className="text-red-500">{error}</p>}
         </section>
       )}
+      {isPopupOpen && <Popup onClose={handleClosePopup}>{popupContent}</Popup>}
     </>
   )
 }

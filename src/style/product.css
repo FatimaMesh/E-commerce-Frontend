@@ -94,7 +94,6 @@ input {
   transition: transform 0.5s ease-in-out;
   cursor: pointer;
   border-radius: 50%;
-  /* filter: drop-shadow(0 0 0.75rem rgb(38, 38, 38)); */
 }
 .card:hover {
   box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset,
@@ -102,22 +101,29 @@ input {
 }
 
 /* category */
+.category-home {
+  margin: 2rem auto;
+  text-align: center;
+}
 .category {
-  display: flex;
-  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   justify-content: center;
   align-items: center;
+  width: 700px;
+  height: 22vh;
+  overflow: auto;
   gap: 1rem;
-  margin: 2rem auto;
+  margin: 0 auto;
 }
 .category .category-card {
   text-align: center;
-  width: 300px;
+  width: 100%;
   background-image: url("https://img.lovepik.com/photo/50037/9873.jpg_wh860.jpg");
   background-size: cover;
-  padding: 0.3rem;
   border-radius: 20px;
   color: whitesmoke;
+  text-transform: uppercase;
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
   cursor: pointer;
   transition: 0.5s linear;
@@ -129,13 +135,8 @@ input {
   background-color: rgba(0, 0, 0, 0.594);
 }
 
-.category .card-text p {
-  height: 20vh;
-  overflow: hidden;
-}
-
 .category .card-text:hover {
-  background-color: rgba(0, 0, 0, 0.416);
+  background-color: rgba(0, 0, 0, 0.257);
 }
 .pagination {
   display: flex;
@@ -144,6 +145,7 @@ input {
   padding: 0.5rem;
   gap: 0.2rem;
 }
+
 .page-item .page-link {
   padding: 0 0.5rem;
   font-size: 1rem;
@@ -155,6 +157,10 @@ input {
 .page-item .page-link:hover {
   color: coral;
   font-size: 1.1rem;
+}
+
+.popup-description{
+  padding: 1rem;
 }
 
 /* for small devices */
@@ -173,16 +179,17 @@ input {
   .product-search form {
     flex-direction: column;
   }
-  .category .category-card {
-    width: 110px;
-    padding: 0.1rem;
-    font-size: 0.5rem;
-  }
-  .category .card-text p {
-    display: none;
+  .category {
+    width: 70%;
+    min-width: 380px;
+    font-size: 0.7rem;
+    grid-template-columns: repeat(1, 1fr);
   }
   .product-search {
     width: 100%;
+  }
+  .category-home {
+    font-size: 1.3rem;
   }
 }
 
@@ -195,9 +202,13 @@ input {
   .card-image img {
     width: 150px;
   }
-  .category .category-card {
-    width: 200px;
-    font-size: 0.7rem;
+  .category {
+    width: 85%;
+    font-size: 0.85rem;
+  }
+  .category {
+    font-size: 0.9rem;
+    grid-template-columns: repeat(2, 1fr);
   }
   .product-search {
     width: 400px;
@@ -205,8 +216,8 @@ input {
   .product-search form {
     flex-direction: column;
   }
-  .category .card-text p {
-    height: 13vh;
+  .category-home {
+    font-size: 1.5rem;
   }
 }
 
@@ -217,9 +228,6 @@ input {
   }
   .card-image img {
     width: 150px;
-  }
-  .category .card-text p {
-    height: 15vh;
   }
   .product-search {
     font-size: 0.9rem;

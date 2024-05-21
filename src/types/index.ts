@@ -58,6 +58,11 @@ export type CategoryStates = {
   error: string | null
 }
 
+export type FormCategory = {
+  name: string
+  description: string
+}
+
 // type of user
 export type User = {
   userId?: string

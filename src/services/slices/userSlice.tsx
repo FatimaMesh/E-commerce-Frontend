@@ -65,7 +65,6 @@ export const updateUserBehavior = createAsyncThunk(
   async ({ userBehavior, userId }: { userBehavior: UserBehavior; userId: string | undefined }) => {
     const config = TokenConfig()
     const response = await api.put(`/users/${userId}/status`, userBehavior, config)
-    console.log(response.data)
     return response.data
   }
 )
@@ -81,7 +80,6 @@ export const updateUserPassword = createAsyncThunk(
   }) => {
     const config = TokenConfig()
     const response = await api.put(`/users/${userId}/updatePassword`, userPassword, config)
-    console.log(response.data)
     return response.data
   }
 )
@@ -108,6 +106,10 @@ const userReducer = createSlice({
   },
   extraReducers(builder) {
     builder
+      .addCase(fetchUsers.pending, (state) => {
+        state.error = null
+        state.isLoading = true
+      })
       .addCase(fetchUsers.fulfilled, (state, action) => {
         state.users = action.payload.data.users
         state.totalUsers = action.payload.data.totalUsers
@@ -139,12 +141,33 @@ const userReducer = createSlice({
         localStorage.setItem(
           "loginUserData",
           JSON.stringify({
-            user: state.user
+            user: state.user,
+            isLoggedIn: state.isLoggedIn
           })
         )
         state.isLoading = false
       })
       .addCase(updateProfile.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
+      })
+      
+      .addCase(updateUserPassword.fulfilled, (state, action) => {
+        const updatedUser = action.payload.data
+        state.users = state.users.map((user) =>
+          user.userId === updatedUser.userId ? updatedUser : user
+        )
+        state.user = updatedUser
+        localStorage.setItem(
+          "loginUserData",
+          JSON.stringify({
+            user: state.user,
+            isLoggedIn: state.isLoggedIn
+          })
+        )
+        state.isLoading = false
+      })
+      .addCase(updateUserPassword.rejected, (state, action) => {
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })
@@ -171,14 +194,8 @@ const userReducer = createSlice({
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
       })
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          state.error = null
-          state.isLoading = true
-        }
-      )
   }
 })
 

@@ -8,6 +8,7 @@ import { PageContext } from "@/context/PageContext"
 import { Users } from "@/components/Dashboard/Admin/Users"
 import { Products } from "@/components/Dashboard/Admin/Products"
 import { Profile } from "@/components/Dashboard/Profile"
+import { Category } from "@/components/Dashboard/Admin/Category"
 
 export const AdminDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("dashboard")
@@ -21,6 +22,7 @@ export const AdminDashboard = () => {
           {openPage === "users" && <Users />}
           {openPage === "products" && <Products />}
           {openPage === "account" && <Profile />}
+          {openPage === "category" && <Category />}
         </main>
       </div>
       <Footer />

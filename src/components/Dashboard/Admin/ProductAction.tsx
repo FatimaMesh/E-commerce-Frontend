@@ -7,7 +7,6 @@ import { AppDispatch } from "@/services/store"
 import { Category, FormProduct, Product } from "@/types"
 import { errorMessage, successMessage } from "@/utility/notify"
 
-
 //Add product
 export const AddProduct = ({ categories }: { categories: Category[] }) => {
   const dispatch: AppDispatch = useDispatch()
@@ -30,9 +29,9 @@ export const AddProduct = ({ categories }: { categories: Category[] }) => {
   }
 
   return (
-    <section className="add-product">
+    <section className="popup-window">
       <h1>Add Product</h1>
-      <form className="Add-form" onSubmit={handleSubmit(productSubmit)}>
+      <form className="add-form" onSubmit={handleSubmit(productSubmit)}>
         <div>
           <label htmlFor="product-name">Name</label>
           <input
@@ -134,7 +133,7 @@ export const DeleteProduct = ({ id, onclose }: { id: string; onclose: () => void
   }
 
   return (
-    <section className="add-product">
+    <section className="popup-window">
       <h1>Delete Product</h1>
       <p>Are you sure..!</p>
       <button className="btn confirm" type="submit" onClick={() => handleDelete(id)}>
@@ -145,7 +144,7 @@ export const DeleteProduct = ({ id, onclose }: { id: string; onclose: () => void
 }
 
 //Edit product
-export const EditProduct = ({ product }: { product: Product}) => {
+export const EditProduct = ({ product }: { product: Product }) => {
   const dispatch: AppDispatch = useDispatch()
   const {
     register,
@@ -154,8 +153,8 @@ export const EditProduct = ({ product }: { product: Product}) => {
     setValue
   } = useForm<FormProduct>()
 
-  //add product
-  const productSubmit: SubmitHandler<FormProduct> = async (data) => {
+  //Edit product
+  const updateProductSubmit: SubmitHandler<FormProduct> = async (data) => {
     try {
       const response = await dispatch(
         updateProduct({ productId: product.productId, product: data })
@@ -175,9 +174,9 @@ export const EditProduct = ({ product }: { product: Product}) => {
   }, [product, setValue])
 
   return (
-    <section className="add-product">
+    <section className="popup-window">
       <h1>Edit Product</h1>
-      <form className="Add-form" onSubmit={handleSubmit(productSubmit)}>
+      <form className="update-form" onSubmit={handleSubmit(updateProductSubmit)}>
         <div>
           <label htmlFor="update-product-name">Name</label>
           <input

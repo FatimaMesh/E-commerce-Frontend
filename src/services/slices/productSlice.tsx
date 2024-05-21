@@ -8,7 +8,7 @@ const initialState: ProductStates = {
   products: [],
   product: null,
   isLoading: false,
-  totalItems:0,
+  totalItems: 0,
   reviews: [],
   error: null
 }
@@ -74,6 +74,10 @@ const productReducer = createSlice({
   reducers: {},
   extraReducers(builder) {
     builder
+      .addCase(fetchProducts.pending, (state) => {
+        state.error = null
+        state.isLoading = true
+      })
       .addCase(fetchProducts.fulfilled, (state, action) => {
         state.products = action.payload.data.products
         state.totalItems = action.payload.data.totalItems
@@ -125,13 +129,6 @@ const productReducer = createSlice({
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })
-      .addMatcher(
-        (action) => action.type.endsWith("/pending"),
-        (state) => {
-          state.error = null
-          state.isLoading = true
-        }
-      )
   }
 })
 
