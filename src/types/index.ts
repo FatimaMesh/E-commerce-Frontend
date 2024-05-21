@@ -27,7 +27,7 @@ export interface ProductStates {
   product: Product | null
   reviews: Review[] | null
   isLoading: boolean
-  totalItems:number
+  totalItems: number
   error: string | null
 }
 
@@ -78,6 +78,7 @@ export type UserState = {
   users: User[]
   user: User | null
   isLoading: boolean
+  totalUsers: number
   error: string | null
   isLoggedIn: boolean
 }

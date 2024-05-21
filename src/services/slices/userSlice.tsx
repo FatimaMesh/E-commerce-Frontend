@@ -3,11 +3,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import api from "@/api"
 import { FormLogin, FormRegister, UserState } from "@/types"
 import { TokenConfig } from "../TokenConfig"
+import { UserBehavior } from "@/components/Dashboard/Admin/UpdateUser"
 
 const initialState: UserState = {
   users: [],
   user: null,
   isLoading: false,
+  totalUsers: 0,
   isLoggedIn: false,
   error: null
 }
@@ -41,6 +43,25 @@ export const fetchUsers = createAsyncThunk(
   }
 )
 
+export const updateUserBehavior = createAsyncThunk(
+  "users/updateUserBehavior",
+  async ({ userBehavior, userId }: { userBehavior: UserBehavior; userId: string | undefined }) => {
+    const config = TokenConfig()
+    const response = await api.put(`/users/${userId}/status`, userBehavior, config)
+    console.log(response.data)
+    return response.data
+  }
+)
+
+export const deleteUser = createAsyncThunk(
+  "users/deleteUser",
+  async (userId: string | undefined) => {
+    const config = TokenConfig()
+    const response = await api.delete(`/users/${userId}`, config)
+    return response.data
+  }
+)
+
 const userReducer = createSlice({
   name: "users",
   initialState: initialState,
@@ -55,10 +76,32 @@ const userReducer = createSlice({
   extraReducers(builder) {
     builder
       .addCase(fetchUsers.fulfilled, (state, action) => {
-        state.users = action.payload.data
+        state.users = action.payload.data.users
+        state.totalUsers = action.payload.data.totalUsers
         state.isLoading = false
       })
       .addCase(fetchUsers.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
+      })
+
+      .addCase(updateUserBehavior.fulfilled, (state, action) => {
+        const updatedUser = action.payload.data
+        state.users = state.users.map((user) =>
+          user.userId === updatedUser.userId ? updatedUser : user
+        )
+        state.isLoading = false
+      })
+      .addCase(updateUserBehavior.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
+      })
+
+      .addCase(deleteUser.fulfilled, (state, action) => {
+        state.users = state.users.filter((user) => user.userId !== action.payload.data)
+        state.isLoading = false
+      })
+      .addCase(deleteUser.rejected, (state, action) => {
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })
