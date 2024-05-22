@@ -114,6 +114,11 @@ export type OrderItem = {
   order: Order | null
 }
 
+export type cartData = {
+  productId: string
+  quantity: number
+}
+
 // type of order
 export type Order = {
   orderId: string

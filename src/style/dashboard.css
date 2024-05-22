@@ -3,14 +3,24 @@
   display: grid;
   width: 100%;
   grid-template-columns: 0.8fr 3fr;
-  grid-template-areas: "side main";
+  grid-template-areas:
+    "head head"
+    "side main"
+    "footer footer";
   background-image: var(--bgdashboard);
   background-size: 42px 42px;
 }
 
+header {
+  grid-area: head;
+}
 .dashboard-layout main {
   grid-area: main;
-  width: 100%;
+  min-height: 70vh;
+}
+footer {
+  grid-area: footer;
+  margin-top: auto;
 }
 
 .dashboard-sidebar {
@@ -105,8 +115,10 @@
   .dashboard-layout {
     grid-template-columns: 1fr;
     grid-template-areas:
+      "head"
       "side"
-      "main";
+      "main"
+      "footer";
   }
   .dashboard-sidebar {
     height: 30vh;
@@ -121,11 +133,13 @@
   .dashboard-layout {
     grid-template-columns: 1fr;
     grid-template-areas:
+      "head"
       "side"
-      "main";
+      "main"
+      "footer";
   }
-    .dashboard-sidebar {
-    height: 46vh;
+  .dashboard-sidebar {
+    height: 20rem;
   }
 }
 

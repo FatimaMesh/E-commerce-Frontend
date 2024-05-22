@@ -9,6 +9,9 @@ import { Header } from "@/components/Header"
 import "../style/productDetail.css"
 import { AppDispatch, RootState } from "@/services/store"
 import { fetchSingleProduct } from "@/services/slices/productSlice"
+import { errorMessage, successMessage } from "@/utility/notify"
+import { cartData } from "@/types"
+import { addToCart } from "@/services/slices/orderItemsSlice"
 
 const ProductDetail = () => {
   const { slug } = useParams<{ slug: string }>()
@@ -34,6 +37,16 @@ const ProductDetail = () => {
     }
     fetchDate()
   }, [])
+
+  //add product to cart
+  const handlerAddToCart = async ({ productId, quantity }: cartData) => {
+    try {
+      const response = await dispatch(addToCart({ productId, quantity })).unwrap()
+      successMessage(response.message)
+    } catch (error) {
+      errorMessage((error as Error).message)
+    }
+  }
 
   return (
     <>
@@ -64,7 +77,13 @@ const ProductDetail = () => {
                       -
                     </button>
                   </div>
-                  <button className="btn">
+                  <button
+                    className="btn"
+                    type="button"
+                    onClick={() =>
+                      handlerAddToCart({ productId: product.productId, quantity: quantity })
+                    }
+                  >
                     <BiCart />
                     Add to cart
                   </button>

@@ -3,9 +3,10 @@ import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { BiMoney } from "react-icons/bi"
 
-import { fetchCart } from "@/services/slices/orderItemsSlice"
+import { deleteFromCart, fetchCart } from "@/services/slices/orderItemsSlice"
 import { AppDispatch, RootState } from "@/services/store"
 import { usePage } from "@/context/PageContext"
+import { errorMessage, successMessage } from "@/utility/notify"
 
 export const Cart = () => {
   const { orderItems, isLoading } = useSelector((state: RootState) => state.orderItemR)
@@ -17,7 +18,17 @@ export const Cart = () => {
       await dispatch(fetchCart())
     }
     fetchCartItem()
-  }, [])
+  }, [dispatch])
+
+  //add product to cart
+  const handlerDeleteCartItem = async (orderItemId: string) => {
+    try {
+      const response = await dispatch(deleteFromCart(orderItemId)).unwrap()
+      successMessage(response.message)
+    } catch (error) {
+      errorMessage((error as Error).message)
+    }
+  }
   return (
     <section className="cart container">
       <h1>
@@ -51,7 +62,11 @@ export const Cart = () => {
                   <p>{item.price * item.quantity} SR</p>
                 </td>
                 <td>
-                  <button className="delete-btn">
+                  <button
+                    type="button"
+                    className="delete-btn"
+                    onClick={() => handlerDeleteCartItem(item.orderItemId)}
+                  >
                     <FaTrash />
                   </button>
                 </td>

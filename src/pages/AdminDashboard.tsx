@@ -16,8 +16,8 @@ export const AdminDashboard = () => {
 
   return (
     <PageContext.Provider value={{ openPage, setOpenPage }}>
-      <Header />
       <div className="dashboard-layout container">
+        <Header />
         <AdminSidebar />
         <main className="admin-dashboard">
           {openPage === "users" && <Users />}
@@ -26,8 +26,8 @@ export const AdminDashboard = () => {
           {openPage === "category" && <Category />}
           {openPage === "orders" && <Orders />}
         </main>
+        <Footer />
       </div>
-      <Footer />
     </PageContext.Provider>
   )
 }

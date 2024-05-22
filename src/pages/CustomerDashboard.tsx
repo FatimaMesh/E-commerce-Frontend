@@ -2,7 +2,7 @@ import { useState } from "react"
 
 import "../style/dashboard.css"
 import "../style/customer.css"
-import {Header} from "@/components/Header"
+import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import Sidebar from "@/components/Dashboard/Sidebar"
 import { Cart } from "@/components/Dashboard/Customer/Cart"
@@ -15,8 +15,8 @@ export const CustomerDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("shop")
   return (
     <PageContext.Provider value={{ openPage, setOpenPage }}>
-      <Header />
       <section className="dashboard-layout container">
+        <Header />
         <Sidebar />
         <main>
           {openPage === "cart" && <Cart />}
@@ -24,8 +24,8 @@ export const CustomerDashboard = () => {
           {openPage === "order" && <UserOrder />}
           {openPage === "account" && <Profile />}
         </main>
+        <Footer />
       </section>
-      <Footer />
     </PageContext.Provider>
   )
 }
