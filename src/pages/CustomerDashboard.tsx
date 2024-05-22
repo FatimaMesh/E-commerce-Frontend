@@ -8,8 +8,8 @@ import Sidebar from "@/components/Dashboard/Sidebar"
 import { Cart } from "@/components/Dashboard/Customer/Cart"
 import { Shop } from "@/components/Dashboard/Customer/Shop"
 import { PageContext } from "@/context/PageContext"
-import { Order } from "@/components/Dashboard/Customer/Order"
 import { Profile } from "@/components/Dashboard/Profile"
+import { UserOrder } from "@/components/Dashboard/Customer/UserOrders"
 
 export const CustomerDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("shop")
@@ -21,7 +21,7 @@ export const CustomerDashboard = () => {
         <main>
           {openPage === "cart" && <Cart />}
           {openPage === "shop" && <Shop />}
-          {openPage === "order" && <Order />}
+          {openPage === "order" && <UserOrder />}
           {openPage === "account" && <Profile />}
         </main>
       </section>

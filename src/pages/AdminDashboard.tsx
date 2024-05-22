@@ -9,6 +9,7 @@ import { Users } from "@/components/Dashboard/Admin/Users"
 import { Products } from "@/components/Dashboard/Admin/Products"
 import { Profile } from "@/components/Dashboard/Profile"
 import { Category } from "@/components/Dashboard/Admin/Category"
+import { Orders } from "@/components/Dashboard/Admin/Orders"
 
 export const AdminDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("dashboard")
@@ -23,6 +24,7 @@ export const AdminDashboard = () => {
           {openPage === "products" && <Products />}
           {openPage === "account" && <Profile />}
           {openPage === "category" && <Category />}
+          {openPage === "orders" && <Orders />}
         </main>
       </div>
       <Footer />

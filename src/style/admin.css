@@ -126,6 +126,10 @@
   scroll-behavior: smooth;
 }
 
+
+/* orders page style */
+
+
 /* for small devices */
 @media only screen and (max-width: 600px) {
   .content .create-at {

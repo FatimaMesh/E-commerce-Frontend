@@ -1,22 +1,38 @@
 import dayjs from "dayjs"
-import { useEffect } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { FaFirstOrder } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
 
 import { usePage } from "@/context/PageContext"
-import { fetchOrder } from "@/services/slices/orderSlice"
+import { fetchUserOrder } from "@/services/slices/orderSlice"
 import { AppDispatch, RootState } from "@/services/store"
+import Popup from "@/components/Popup"
+import { CancelOrder } from "../OrderAction"
 
-export const Order = () => {
-  const { orders, isLoading } = useSelector((state: RootState) => state.orderR)
+export const UserOrder = () => {
+  const { userOrders, isLoading } = useSelector((state: RootState) => state.orderR)
   const dispatch: AppDispatch = useDispatch()
   const { setOpenPage } = usePage()
 
+  //popup window for add/edit/delete product
+  const [isPopupOpen, setIsPopupOpen] = useState(false)
+  const [popupContent, setPopupContent] = useState<ReactNode | null>(null)
+
+  const handleOpenPopup = (content: ReactNode) => {
+    setPopupContent(content)
+    setIsPopupOpen(true)
+  }
+
+  const handleClosePopup = () => {
+    setPopupContent(null)
+    setIsPopupOpen(false)
+  }
+
   useEffect(() => {
-    const fetchCartItem = async () => {
-      await dispatch(fetchOrder())
+    const fetchUserOrders = async () => {
+      await dispatch(fetchUserOrder())
     }
-    fetchCartItem()
+    fetchUserOrders()
   }, [])
   return (
     <section className="order container">
@@ -32,9 +48,9 @@ export const Order = () => {
             <td></td>
           </tr>
         </thead>
-        <tbody>
-          {orders?.length ? (
-            orders.map((item) => (
+        <tbody className="users-order">
+          {userOrders?.length ? (
+            userOrders.map((item) => (
               <tr key={item.orderId}>
                 <td>
                   <p>Address: {item.deliveryAddress}</p>
@@ -51,9 +67,18 @@ export const Order = () => {
                   {item.orderStatus === 4 && "Canceled"}
                 </td>
                 <td>
-                  <button className="delete-btn" disabled={item.orderStatus === 4}>
-                    Cancel
-                  </button>
+                  {item.orderStatus !== 4 && (
+                    <button
+                      className="delete-btn"
+                      onClick={() =>
+                        handleOpenPopup(
+                          <CancelOrder id={item.orderId} onclose={handleClosePopup} />
+                        )
+                      }
+                    >
+                      Cancel
+                    </button>
+                  )}
                 </td>
               </tr>
             ))
@@ -70,10 +95,13 @@ export const Order = () => {
         </tbody>
         <tfoot>
           <tr>
-            <td></td>
+            <td>
+              <h3> Total orders {userOrders.length}</h3>
+            </td>
           </tr>
         </tfoot>
       </table>
+      {isPopupOpen && <Popup onClose={handleClosePopup}>{popupContent}</Popup>}
     </section>
   )
 }

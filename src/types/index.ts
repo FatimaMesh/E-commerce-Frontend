@@ -129,6 +129,20 @@ export type Order = {
   orderItems: OrderItem[]
 }
 
+export type orderStates = {
+  orders: Order[]
+  userOrders: Order[]
+  order: Order | null
+  totalOrders: number
+  isLoading: boolean
+  error: string | null
+}
+
+export type FormOrder = {
+  deliveryAddress: "string"
+  paymentMethod: "string"
+}
+
 // type of review
 export type Review = {
   reviewId: string
