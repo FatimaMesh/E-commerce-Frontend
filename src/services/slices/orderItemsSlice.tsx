@@ -29,6 +29,15 @@ export const addToCart = createAsyncThunk("orderItems/addToCart", async (cartIte
   return response.data
 })
 
+export const updateQuantity = createAsyncThunk(
+  "orderItems/updateQuantity",
+  async ({ orderItemId, quantity }: { orderItemId: string; quantity: number }) => {
+    const config = TokenConfig()
+    const response = await api.put(`/orderItems/${orderItemId}`, { quantity }, config)
+    return response.data
+  }
+)
+
 export const deleteFromCart = createAsyncThunk(
   "orderItems/deleteFromCart",
   async (orderItemId: string | undefined) => {
@@ -41,7 +50,11 @@ export const deleteFromCart = createAsyncThunk(
 const orderItemReducer = createSlice({
   name: "orderItems",
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    orderConfirm(state) {
+      state.orderItems = []
+    }
+  },
   extraReducers(builder) {
     builder
       .addCase(fetchCart.fulfilled, (state, action) => {
@@ -67,6 +80,21 @@ const orderItemReducer = createSlice({
         state.isLoading = false
       })
 
+      .addCase(updateQuantity.fulfilled, (state, action) => {
+        const index = state.orderItems.findIndex(
+          (item) => item.orderItemId === action.payload.data.orderItemId
+        )
+        if (index !== -1) {
+          state.orderItems[index].quantity = action.payload.data.quantity
+        }
+        state.isLoading = false
+      })
+
+      .addCase(updateQuantity.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
+      })
+
       .addCase(deleteFromCart.fulfilled, (state, action) => {
         state.orderItems = state.orderItems.filter(
           (orderItem) => orderItem.orderItemId !== action.payload.data
@@ -79,5 +107,7 @@ const orderItemReducer = createSlice({
       })
   }
 })
+
+export const { orderConfirm } = orderItemReducer.actions
 
 export default orderItemReducer.reducer

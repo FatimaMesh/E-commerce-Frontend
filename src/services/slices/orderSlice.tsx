@@ -9,15 +9,22 @@ const initialState: orderStates = {
   userOrders: [],
   order: null,
   totalOrders: 0,
+  totalUserOrders: 0,
   isLoading: false,
   error: null
 }
 
-export const fetchUserOrder = createAsyncThunk("order/fetchUserOrder", async () => {
-  const config = TokenConfig()
-  const response = await api.get("/orders/userOrder", config)
-  return response.data
-})
+export const fetchUserOrder = createAsyncThunk(
+  "order/fetchUserOrder",
+  async ({ currentPage, itemsPerPage }: { currentPage: number; itemsPerPage: number }) => {
+    const config = TokenConfig()
+    const response = await api.get(
+      `/orders/userOrder?page=${currentPage}&limit=${itemsPerPage}`,
+      config
+    )
+    return response.data
+  }
+)
 
 export const fetchAllOrder = createAsyncThunk(
   "order/fetchAllOrder",
@@ -74,7 +81,8 @@ const orderReducer = createSlice({
         state.isLoading = true
       })
       .addCase(fetchUserOrder.fulfilled, (state, action) => {
-        state.userOrders = action.payload.data
+        state.userOrders = action.payload.data.usersOrders
+        state.totalUserOrders = action.payload.data.totalUserOrder
         state.isLoading = false
       })
       .addCase(fetchUserOrder.rejected, (state, action) => {
@@ -92,6 +100,16 @@ const orderReducer = createSlice({
         state.isLoading = false
       })
       .addCase(fetchAllOrder.rejected, (state, action) => {
+        state.error = action.error.message || "There is something wrong"
+        state.isLoading = false
+      })
+
+      .addCase(addOrder.fulfilled, (state, action) => {
+        state.userOrders = [...state.userOrders, action.payload.data]
+        state.orders = [...state.orders, action.payload.data]
+        state.isLoading = false
+      })
+      .addCase(addOrder.rejected, (state, action) => {
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })

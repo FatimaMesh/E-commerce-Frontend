@@ -139,6 +139,7 @@ export type orderStates = {
   userOrders: Order[]
   order: Order | null
   totalOrders: number
+  totalUserOrders: number
   isLoading: boolean
   error: string | null
 }

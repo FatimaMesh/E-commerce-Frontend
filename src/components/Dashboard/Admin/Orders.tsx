@@ -34,7 +34,7 @@ export const Orders = () => {
       await dispatch(fetchAllOrder({ currentPage, itemsPerPage }))
     }
     fetchOrders()
-  }, [currentPage, itemsPerPage, totalOrders])
+  }, [currentPage, itemsPerPage, totalOrders, dispatch])
 
   // Change page number
   const paginate = (pageNumber: number) => {

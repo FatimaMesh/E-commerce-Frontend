@@ -8,9 +8,14 @@ import { fetchUserOrder } from "@/services/slices/orderSlice"
 import { AppDispatch, RootState } from "@/services/store"
 import Popup from "@/components/Popup"
 import { CancelOrder } from "../OrderAction"
+import { Pagination } from "@/components/Pagination"
 
 export const UserOrder = () => {
-  const { userOrders, isLoading } = useSelector((state: RootState) => state.orderR)
+  const [currentPage, setCurrentPage] = useState<number>(1)
+  const [itemsPerPage] = useState<number>(4)
+  const { userOrders, totalUserOrders, isLoading, error } = useSelector(
+    (state: RootState) => state.orderR
+  )
   const dispatch: AppDispatch = useDispatch()
   const { setOpenPage } = usePage()
 
@@ -30,10 +35,15 @@ export const UserOrder = () => {
 
   useEffect(() => {
     const fetchUserOrders = async () => {
-      await dispatch(fetchUserOrder())
+      await dispatch(fetchUserOrder({ currentPage, itemsPerPage }))
     }
     fetchUserOrders()
-  }, [])
+  }, [currentPage, itemsPerPage, totalUserOrders, dispatch])
+
+  // Change page number
+  const paginate = (pageNumber: number) => {
+    setCurrentPage(pageNumber)
+  }
   return (
     <section className="order container">
       <h1>
@@ -84,7 +94,7 @@ export const UserOrder = () => {
             ))
           ) : (
             <tr>
-              <td colSpan={5} className="no-content">
+              <td className="no-content" colSpan={4}>
                 <p>Order is empty</p>
                 <button className="btn" onClick={() => setOpenPage("shop")}>
                   SHOP NOW
@@ -93,10 +103,18 @@ export const UserOrder = () => {
             </tr>
           )}
         </tbody>
-        <tfoot>
+        <tfoot className="pages-orders">
           <tr>
-            <td>
-              <h3> Total orders {userOrders.length}</h3>
+            <td colSpan={4}>
+              <h3>
+                {" "}
+                <Pagination
+                  itemsPerPage={itemsPerPage}
+                  totalItems={totalUserOrders}
+                  paginate={paginate}
+                />
+                {error && <p className="text-red-500">{error}</p>}
+              </h3>
             </td>
           </tr>
         </tfoot>

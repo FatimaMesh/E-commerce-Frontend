@@ -110,6 +110,25 @@ footer {
   border-radius: 32px;
 }
 
+.cart-icon{
+  position: relative;
+}
+
+.badge{
+  position: absolute;
+  top: -7.5px;
+  left: 0.5rem;
+  font-weight: 800;
+  border-radius: 50%;
+  font-size: 0.7rem;
+  transition: 0.5s linear;
+}
+
+.open-sidebar .badge{
+  top: -4px;
+  left: 12px;
+}
+
 /* for small devices */
 @media only screen and (max-width: 600px) {
   .dashboard-layout {

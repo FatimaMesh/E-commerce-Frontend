@@ -1,14 +1,22 @@
 import { FaFirstOrder, FaShoppingCart } from "react-icons/fa"
 import { BiComment, BiSolidUserAccount, BiSolidWatch } from "react-icons/bi"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 
 import userIcon from "../../assets/image/user.jpeg"
 import { usePage } from "@/context/PageContext"
-import { RootState } from "@/services/store"
+import { AppDispatch, RootState } from "@/services/store"
+import { useEffect } from "react"
+import { fetchCart } from "@/services/slices/orderItemsSlice"
 
 const Sidebar = () => {
+  const dispatch: AppDispatch = useDispatch()
   const { openPage, setOpenPage } = usePage()
   const { user } = useSelector((state: RootState) => state.userR)
+  const { orderItems } = useSelector((state: RootState) => state.orderItemR)
+
+  useEffect(() => {
+    dispatch(fetchCart())
+  }, [dispatch])
 
   return (
     <aside className="dashboard-sidebar">
@@ -59,10 +67,11 @@ const Sidebar = () => {
               </li>
               <li
                 onClick={() => setOpenPage("cart")}
-                className={openPage === "cart" ? "open-sidebar" : ""}
+                className={openPage === "cart" ? "open-sidebar cart-icon" : "cart-icon"}
               >
                 <FaShoppingCart />
                 Cart
+                <span className="badge">{orderItems.length}</span>
               </li>
             </ul>
           </div>
