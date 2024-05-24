@@ -13,7 +13,7 @@ const AdminSidebar = () => {
   return (
     <aside className="dashboard-sidebar">
       {/* <!-- SIDEBAR HEADER --> */}
-      <section className="user-head">
+      <section className="user-head" onClick={() => setOpenPage("account")}>
         <img src={userIcon} alt="Logo" />
         <div>
           <h2>{user?.fullName}</h2>

@@ -1,12 +1,16 @@
-import { BiSolidDashboard } from "react-icons/bi"
-import { FaBahai, FaHome, FaShoppingBag } from "react-icons/fa"
+import { BiSolidDashboard, BiSolidWatch } from "react-icons/bi"
+import { FaBahai, FaHome } from "react-icons/fa"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
+import { ShoppingCartIcon } from "lucide-react"
+import { Link as ScrollLink } from "react-scroll"
 
 import { RootState } from "@/services/store"
+import "../style/cart.css"
 
 export const Nav = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.userR)
+  const { localCart } = useSelector((state: RootState) => state.orderItemR)
   return (
     <nav className="header-navbar">
       <span>
@@ -22,13 +26,21 @@ export const Nav = () => {
         </Link>
       </span>
       {!isLoggedIn ? (
-        <span>
-          {" "}
-          <FaShoppingBag />
-          <Link to="#product" className="nav-link">
-            Product
-          </Link>{" "}
-        </span>
+        <>
+          <span>
+            {" "}
+            <BiSolidWatch />
+            <ScrollLink to="product" className="nav-link">
+              Product
+            </ScrollLink>{" "}
+          </span>
+          <span className="home-cart">
+            <Link to="/cart" className="nav-link">
+              <ShoppingCartIcon />
+            </Link>{" "}
+            <p className="badge">{localCart.length}</p>
+          </span>
+        </>
       ) : (
         <span>
           <BiSolidDashboard />

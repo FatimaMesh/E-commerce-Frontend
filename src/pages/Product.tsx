@@ -64,20 +64,17 @@ export const Products = () => {
     <>
       <div className="product-search product-filter">
         <form>
-          <span>
-            <h2>
-              <BiSearchAlt></BiSearchAlt>
+          <div className="search-container">
+            <h2 className="search-btn">
+              <BiSearchAlt />
             </h2>
             <input
               type="text"
-              id="search"
-              name="search"
-              value={keyWord}
-              className="input"
+              placeholder="Type to search..."
+              className="search-input input"
               onChange={handlerKeyword}
-              placeholder="search...."
             />
-          </span>
+          </div>
           <span>
             <label htmlFor="orderBy">OrderBy</label>
             <select value={orderBy} onChange={handlerOrder} id="orderBy">

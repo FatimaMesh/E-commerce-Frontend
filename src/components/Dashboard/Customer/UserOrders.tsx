@@ -113,7 +113,6 @@ export const UserOrder = () => {
                   totalItems={totalUserOrders}
                   paginate={paginate}
                 />
-                {error && <p className="text-red-500">{error}</p>}
               </h3>
             </td>
           </tr>

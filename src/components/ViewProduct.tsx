@@ -7,12 +7,13 @@ import "../style/productDetail.css"
 import { AppDispatch, RootState } from "@/services/store"
 import { fetchSingleProduct } from "@/services/slices/productSlice"
 import { errorMessage, successMessage } from "@/utility/notify"
-import { cartData } from "@/types"
-import { addToCart } from "@/services/slices/orderItemsSlice"
+import { Product} from "@/types"
+import { addToCart, addToLocalCart } from "@/services/slices/orderItemsSlice"
 
 export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
   const dispatch: AppDispatch = useDispatch()
   const { product, reviews, isLoading, error } = useSelector((state: RootState) => state.productR)
+  const { isLoggedIn } = useSelector((state: RootState) => state.userR)
 
   const [quantity, setQuantity] = useState<number>(1)
 
@@ -35,10 +36,23 @@ export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
   }, [])
 
   //add product to cart
-  const handlerAddToCart = async ({ productId, quantity }: cartData) => {
+  const handlerAddToCart = async ({
+    productData,
+    quantity
+  }: {
+    productData: Product
+    quantity: number
+  }) => {
     try {
-      const response = await dispatch(addToCart({ productId, quantity })).unwrap()
-      successMessage(response.message)
+      if (isLoggedIn) {
+        const response = await dispatch(
+          addToCart({ productId: productData.productId, quantity: quantity })
+        ).unwrap()
+        successMessage(response.message)
+      } else {
+        dispatch(addToLocalCart({ product, quantity }))
+        successMessage("Product added to cart. Please login to complete the purchase.")
+      }
     } catch (error) {
       errorMessage((error as Error).message)
     }
@@ -73,9 +87,7 @@ export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
                 <button
                   className="btn"
                   type="button"
-                  onClick={() =>
-                    handlerAddToCart({ productId: product.productId, quantity: quantity })
-                  }
+                  onClick={() => handlerAddToCart({ productData: product, quantity: quantity })}
                 >
                   <BiCart />
                   Add to cart

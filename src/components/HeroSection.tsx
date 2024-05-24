@@ -1,6 +1,7 @@
 // import video from "../assets/video.mov";
 import image from "../assets/image/im1.png"
 import image2 from "../assets/image/im2.png"
+import { Link } from "react-scroll"
 
 export const HeroSection = () => {
   return (
@@ -8,7 +9,9 @@ export const HeroSection = () => {
       <div className="hero-text">
         <h1>Shine with us</h1>
         <p>From Classic to Contemporary: Find the Watch That Reflects Your Style!</p>
-        <button className="btn">Shop Now</button>
+        <Link className="btn" to="product">
+          Shop Now
+        </Link>
       </div>
       <div className="hero-images">
         <img src={image2} className="front-image" />

@@ -11,12 +11,14 @@ import {
   CustomerDashboard
 } from "./pages/pages"
 import { ProtectAdminRoute, ProtectCustomerRoute } from "./router/ProtectRoute"
+import { CartPage } from "./pages/CartPage"
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/cart" element={<CartPage/>}/>
         <Route element={<ProtectCustomerRoute />}>
           <Route path="/dashboard/customer" element={<CustomerDashboard />} />
         </Route>

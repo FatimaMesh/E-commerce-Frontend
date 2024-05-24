@@ -102,7 +102,6 @@ export const Orders = () => {
                 totalItems={totalOrders}
                 paginate={paginate}
               />
-              {error && <p className="text-red-500">{error}</p>}
             </td>
           </tr>
         </tfoot>

@@ -10,6 +10,7 @@ import { Products } from "@/components/Dashboard/Admin/Products"
 import { Profile } from "@/components/Dashboard/Profile"
 import { Category } from "@/components/Dashboard/Admin/Category"
 import { Orders } from "@/components/Dashboard/Admin/Orders"
+import { Dashboard } from "@/components/Dashboard/Admin/Dashboard"
 
 export const AdminDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("dashboard")
@@ -20,6 +21,7 @@ export const AdminDashboard = () => {
         <Header />
         <AdminSidebar />
         <main className="admin-dashboard">
+          {openPage === "dashboard" && <Dashboard />}
           {openPage === "users" && <Users />}
           {openPage === "products" && <Products />}
           {openPage === "account" && <Profile />}
