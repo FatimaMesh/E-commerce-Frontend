@@ -51,7 +51,7 @@ export const CategoryCard = () => {
                 <h2>{item.name}</h2>
             </div>
           ))}
-          {error && <p className="text-red-500">{error}</p>}
+          {error && <p className="error">{error}</p>}
         </section>
       )}
       {isPopupOpen && <Popup onClose={handleClosePopup}>{popupContent}</Popup>}

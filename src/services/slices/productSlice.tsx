@@ -21,12 +21,16 @@ export const fetchProducts = createAsyncThunk(
     keyWord,
     orderBy,
     sortBy,
+    category,
     minPrice,
     maxPrice
   }: FilterType) => {
     let url = `/products?page=${currentPage}&limit=${itemsPerPage}&sortBy=${sortBy}&orderBy=${orderBy}&minPrice=${minPrice}&maxPrice=${maxPrice}`
     if (keyWord) {
       url += `&keyword=${keyWord}`
+    }
+    if (category) {
+      url += `&category=${category}`
     }
     const response = await api.get(url)
     return response.data

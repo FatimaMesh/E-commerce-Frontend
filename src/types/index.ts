@@ -37,6 +37,7 @@ export type FilterType = {
   keyWord: string | undefined
   orderBy: number
   sortBy: number
+  category:string | undefined
   minPrice: number
   maxPrice: number
 }

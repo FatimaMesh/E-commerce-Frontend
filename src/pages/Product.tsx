@@ -7,6 +7,7 @@ import "../style/product.css"
 import { Pagination } from "@/components/Pagination"
 import { fetchProducts } from "@/services/slices/productSlice"
 import { AppDispatch, RootState } from "@/services/store"
+import { fetchCategories } from "@/services/slices/categorySlice"
 
 export const Products = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
@@ -16,19 +17,41 @@ export const Products = () => {
   const [sortBy, setSortBy] = useState<number>(1)
   const [minPrice, setMinPrice] = useState<number>(1)
   const [maxPrice, setMaxPrice] = useState<number>(2000000)
+  const [category, setCategory] = useState<string | undefined>()
 
   const { products, totalItems, isLoading, error } = useSelector(
     (state: RootState) => state.productR
   )
+  const { categories } = useSelector((state: RootState) => state.categoryR)
   const dispatch: AppDispatch = useDispatch()
   const navigate = useNavigate()
 
   // fetch products based on pagination
   useEffect(() => {
     dispatch(
-      fetchProducts({ currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice })
+      fetchProducts({
+        currentPage,
+        itemsPerPage,
+        keyWord,
+        category,
+        orderBy,
+        sortBy,
+        minPrice,
+        maxPrice
+      })
     )
-  }, [currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice, totalItems])
+    dispatch(fetchCategories())
+  }, [
+    currentPage,
+    itemsPerPage,
+    keyWord,
+    category,
+    orderBy,
+    sortBy,
+    minPrice,
+    maxPrice,
+    totalItems
+  ])
 
   //go to product detail
   const handleCardClick = (slug: string) => {
@@ -59,12 +82,14 @@ export const Products = () => {
   const handlerSort = (e: ChangeEvent<HTMLSelectElement>) => setSortBy(Number(e.target.value))
   // apply orderBy
   const handlerOrder = (e: ChangeEvent<HTMLSelectElement>) => setOrderBy(Number(e.target.value))
+  // apply orderBy
+  const handlerCategory = (e: ChangeEvent<HTMLSelectElement>) => setCategory(e.target.value)
 
   return (
     <>
       {/* search part */}
       <aside className="product-search">
-        <form>
+        <form onSubmit={(e) => e.preventDefault()}>
           <div className="search-container">
             <h2 className="search-btn">
               <BiSearchAlt />
@@ -86,6 +111,18 @@ export const Products = () => {
             <select value={sortBy} onChange={handlerSort} id="sortBy">
               <option value={1}>Date</option>
               <option value={0}>Name</option>
+            </select>
+          </span>
+          <span>
+            <label htmlFor="category-type">Category</label>
+            <select value={category} onChange={handlerCategory} id="category-type">
+              <option value="">All</option>
+              {categories &&
+                categories.map((category) => (
+                  <option key={category.categoryId} value={category.categoryId}>
+                    {category.name}
+                  </option>
+                ))}
             </select>
           </span>
           <span className="price-range">

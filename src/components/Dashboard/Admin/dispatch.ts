@@ -13,6 +13,7 @@ export const dispatchActions = (dispatch: AppDispatch) => {
       itemsPerPage: 5,
       keyWord: "",
       sortBy: 1,
+      category:"",
       orderBy: 0,
       minPrice: 1,
       maxPrice: 200000000

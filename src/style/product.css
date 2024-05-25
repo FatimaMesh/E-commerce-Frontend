@@ -3,12 +3,15 @@
 /* search part */
 .product-search {
   max-width: 1200px;
-  width: 600px;
   margin: 1rem auto;
   border-bottom: 0.2rem double rgba(211, 211, 211, 0.731);
 }
+.dashboard-layout .product-search {
+  width: 90%;
+}
 .product-search form {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   margin: 0 auto;
@@ -35,6 +38,12 @@ input {
 .price-range input {
   width: 5rem;
   overflow: scroll;
+}
+
+.product-search select:focus,
+.price-range input:focus {
+  outline: none;
+  border: 2px solid goldenrod;
 }
 
 /* cards product */
@@ -169,12 +178,6 @@ input {
   .product-cards {
     grid-template-columns: repeat(2, minmax(0, 300px));
   }
-  .product-search {
-    width: 400px;
-  }
-  .product-search form {
-    flex-direction: column;
-  }
   .category-home {
     font-size: 1.5rem;
   }
@@ -187,10 +190,5 @@ input {
   }
   .dashboard-layout .product-cards {
     grid-template-columns: repeat(3, minmax(0, 235px));
-  }
-  .dashboard-layout .product-search form {
-    font-size: 0.9rem;
-    flex-direction: column;
-    margin-top: -1rem;
   }
 }
