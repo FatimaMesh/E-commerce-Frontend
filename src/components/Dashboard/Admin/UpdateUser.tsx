@@ -34,9 +34,9 @@ export const UpdateUser = ({ user }: { user: User }) => {
     if (isConfirmed) {
       try {
         await dispatch(deleteUser(user.userId)).unwrap()
-        alert("User deleted successfully")
+        successMessage(`User ${user.fullName} Deleted successfully`)
       } catch (error) {
-        alert("Error deleting user")
+        errorMessage((error as Error).message)
       }
     }
   }

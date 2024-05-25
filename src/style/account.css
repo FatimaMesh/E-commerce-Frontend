@@ -29,6 +29,7 @@
   min-width: 20vw;
   max-width: 40vw;
   max-height: 50vh;
+  padding: 0 0.5rem;
   border-top-right-radius: 5rem;
   border-bottom-right-radius: 5rem;
   border-top-left-radius: 1rem;

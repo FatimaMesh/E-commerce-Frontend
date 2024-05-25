@@ -79,6 +79,13 @@ export type User = {
   reviews: Review[]
 }
 
+export type FilterUser = {
+  currentPage: number
+  itemsPerPage: number
+  orderBy: number
+  sortBy: number
+}
+
 export type UserState = {
   users: User[]
   user: User | null

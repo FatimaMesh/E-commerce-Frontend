@@ -41,12 +41,14 @@
 .popup-window {
   width: 30rem;
 }
-.popup-window .add-form, .popup-window .update-form{
+.popup-window .add-form,
+.popup-window .update-form {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
-.popup-window .add-form div,.popup-window .update-form div {
+.popup-window .add-form div,
+.popup-window .update-form div {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -64,7 +66,6 @@ label {
 
 /* -------- category popup ------------ */
 
-
 /* -------- User popup ------------ */
 
 .user-behavior {
@@ -73,6 +74,15 @@ label {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  min-width: 250px;
+}
+
+.user-behavior .action {
+  display: flex;
+  align-items: center;
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  gap: 2rem;
 }
 
 .check {
@@ -196,9 +206,6 @@ label {
 @media only screen and (min-width: 600px) and (max-width: 900px) {
   .popup-window {
     width: 25rem;
-  }
-  .user-behavior .action {
-    flex-direction: row;
   }
 }
 

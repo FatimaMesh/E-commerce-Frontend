@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 import api from "@/api"
-import { FormLogin, FormRegister, UserState } from "@/types"
+import { FilterUser, FormLogin, FormRegister, UserState } from "@/types"
 import { TokenConfig } from "../TokenConfig"
 import { UserBehavior } from "@/components/Dashboard/Admin/UpdateUser"
 import { FormUpdateProfile } from "@/components/Dashboard/Profile"
@@ -38,9 +38,12 @@ export const loginUser = createAsyncThunk("users/loginUser", async (data: FormLo
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
-  async ({ currentPage, itemsPerPage }: { currentPage: number; itemsPerPage: number }) => {
+  async ({ currentPage, itemsPerPage, sortBy, orderBy }: FilterUser) => {
     const config = TokenConfig()
-    const response = await api.get(`/users?page=${currentPage}&limit=${itemsPerPage}`, config)
+    const response = await api.get(
+      `/users?page=${currentPage}&limit=${itemsPerPage}&sortBy=${sortBy}&orderBy=${orderBy}`,
+      config
+    )
     return response.data
   }
 )
@@ -151,7 +154,7 @@ const userReducer = createSlice({
         state.error = action.error.message || "There is something wrong"
         state.isLoading = false
       })
-      
+
       .addCase(updateUserPassword.fulfilled, (state, action) => {
         const updatedUser = action.payload.data
         state.users = state.users.map((user) =>

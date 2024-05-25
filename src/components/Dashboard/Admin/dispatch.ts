@@ -6,7 +6,7 @@ import { AppDispatch } from "@/services/store"
 
 //for update total number for all the info
 export const dispatchActions = (dispatch: AppDispatch) => {
-  dispatch(fetchUsers({ currentPage: 1, itemsPerPage: 5 }))
+  dispatch(fetchUsers({ currentPage: 1, itemsPerPage: 5, sortBy: 1, orderBy: 0 }))
   dispatch(
     fetchProducts({
       currentPage: 1,

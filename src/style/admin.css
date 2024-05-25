@@ -122,6 +122,23 @@
   scroll-behavior: smooth;
 }
 
+/* user filter part */
+.user-filter form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: space-between;
+}
+
+.user-filter span {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.user-filter select.input {
+  padding: 0.2rem;
+}
+
 /* for small devices */
 @media only screen and (max-width: 600px) {
   .content .create-at {

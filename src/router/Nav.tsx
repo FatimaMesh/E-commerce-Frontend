@@ -1,16 +1,24 @@
 import { BiSolidDashboard, BiSolidWatch } from "react-icons/bi"
 import { FaBahai, FaHome } from "react-icons/fa"
-import { useSelector } from "react-redux"
+import { useDispatch, useSelector } from "react-redux"
 import { Link } from "react-router-dom"
 import { ShoppingCartIcon } from "lucide-react"
 import { Link as ScrollLink } from "react-scroll"
+import { useEffect } from "react"
 
-import { RootState } from "@/services/store"
+import { AppDispatch, RootState } from "@/services/store"
 import "../style/cart.css"
+import { getLocalCart } from "@/services/slices/orderItemsSlice"
 
 export const Nav = () => {
   const { isLoggedIn, user } = useSelector((state: RootState) => state.userR)
   const { localCart } = useSelector((state: RootState) => state.orderItemR)
+  const dispatch: AppDispatch = useDispatch()
+
+  useEffect(() => {
+    dispatch(getLocalCart())
+  }, [dispatch])
+
   return (
     <nav className="header-navbar">
       <span>
