@@ -44,7 +44,7 @@ export const CartPage = () => {
   return (
     <>
       <Header />
-      <main className="container">
+      <main className="main-container">
         <h1 className="cart-title">
           <FaOpencart /> Shopping Cart
         </h1>

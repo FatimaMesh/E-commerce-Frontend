@@ -1,9 +1,10 @@
+/* ---------------- login & register style -----------------*/
 .auth-container {
   display: flex;
   position: relative;
   justify-content: center;
   align-items: center;
-  height: 40rem;
+  padding: 5rem 0rem;
 }
 
 .auth-container .card {
@@ -13,7 +14,7 @@
   width: 50rem;
 }
 
-.card_info {
+.auth-container .card_info {
   display: flex;
   flex-grow: 1;
   flex-direction: column;
@@ -35,28 +36,29 @@
   color: white;
 }
 
-.card_info p {
+.auth-container .card_info p {
   width: 90%;
   text-align: center;
 }
 
-.card_input {
+.auth-container .card_input {
   flex-grow: 1;
   transition: 0.5s linear;
 }
 
-.card_image {
+.auth-container .card_image {
   position: absolute;
-  top: 4.5rem;
+  top: -0.7rem;
 }
 
-.card_image img {
+.auth-container .card_image img {
   width: 10rem;
   height: 7rem;
+  object-fit: contain;
   z-index: 1;
 }
 
-.form_title {
+.auth-container .form_title {
   text-align: center;
   margin: 1rem;
   font-size: 1.5rem;
@@ -89,7 +91,7 @@
   height: 27rem;
 }
 .card_reverse .card_image {
-  top: 1rem;
+  top: -0.8rem;
 }
 
 .card_reverse .card_info {
@@ -104,16 +106,16 @@
 .form .error {
   margin-top: 0.2rem;
   margin-bottom: -0.5rem;
-  width: 250px
+  width: 250px;
 }
-.btn_forgot{
+.btn_forgot {
   background-color: transparent;
   border: none;
   color: dimgray;
   font-weight: 500;
   cursor: pointer;
 }
-.btn_forgot:hover{
+.btn_forgot:hover {
   color: brown;
   font-size: 0.7rem;
   text-decoration: underline;
@@ -121,15 +123,12 @@
 
 /* for small devices */
 @media only screen and (max-width: 600px) {
-  .auth-container {
-    height: 50rem;
-  }
   .auth-container .card {
     flex-direction: column;
-    width: 25rem;
+    width: 22rem;
     height: 90vh;
   }
-  .card_info {
+  .auth-container .card_info {
     gap: 0.5rem;
     height: 13em;
     min-width: 20rem;
@@ -144,27 +143,15 @@
     padding: 0.8rem;
     max-height: 25rem;
   }
-  .card_reverse .card_image,
-  .card_image {
-    position: absolute;
-    top: 1.5rem;
-  }
-
-  .card_image img {
-    width: 8rem;
-    height: 5rem;
-    z-index: 1;
-  }
-  .card_reverse .form .btn{
+  .card_reverse .form .btn {
     margin-top: -0.2rem;
   }
 }
 
 /* for medium devices */
-
 @media only screen and (min-width: 600px) and (max-width: 900px) {
   .auth-container .card {
-    width: 38rem;
+    width: 37rem;
   }
 }
 

@@ -8,8 +8,8 @@ export const Home = () => {
   return (
     <>
       <Header />
-      <main className="container">
-        <HeroSection />
+      <HeroSection />
+      <main className="main-container">
         <CategoryCard />
         <Products />
       </main>

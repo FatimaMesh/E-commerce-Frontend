@@ -62,7 +62,8 @@ export const Products = () => {
 
   return (
     <>
-      <div className="product-search product-filter">
+      {/* search part */}
+      <aside className="product-search">
         <form>
           <div className="search-container">
             <h2 className="search-btn">
@@ -108,8 +109,9 @@ export const Products = () => {
             />
           </span>
         </form>
-      </div>
-      <section className="product" id="product">
+      </aside>
+      {/* product card list */}
+      <div className="product-container" id="product">
         {isLoading ? (
           <p>Loading...</p>
         ) : (
@@ -121,12 +123,8 @@ export const Products = () => {
                   key={item.productId}
                   onClick={() => handleCardClick(item.slug)}
                 >
-                  <div className="card-image">
-                    <img src={item.image} alt={item.description} />
-                  </div>
-                  <div className="card-text">
-                    <h2 className="product-name">{item.name}</h2>
-                  </div>
+                  <img src={item.image} alt={item.description} />
+                  <h2>{item.name}</h2>
                   <p>{item.price} SR</p>
                   <div className="card-btn">
                     <button className="btn">Add to cart</button>
@@ -140,7 +138,7 @@ export const Products = () => {
         )}
         <Pagination itemsPerPage={itemsPerPage} totalItems={totalItems} paginate={paginate} />
         {error && <p className="text-red-500">{error}</p>}
-      </section>
+      </div>
     </>
   )
 }

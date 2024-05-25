@@ -1,8 +1,3 @@
-.admin-dashboard h1 {
-  border-bottom: 1px solid lightgray;
-  width: 100%;
-}
-
 /* table view  */
 .content {
   margin-top: 1rem;
@@ -98,14 +93,14 @@
   flex-direction: column;
   gap: 0.5rem;
 }
-.product-info div,
-.category-info div {
+.dashboard-content .product-info div,
+.dashboard-content .category-info div {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
-.product-info div p,
-.category-info div p {
+.dashboard-content .product-info div p,
+.dashboard-content .category-info div p {
   width: 100%;
 }
 .product-content.content tr:nth-child(odd) {
@@ -114,18 +109,18 @@
 .product-row .product-info img {
   width: 60px;
 }
-.category-info .category-name {
+.dashboard-content .category-info .category-name {
   font-size: large;
   font-weight: 500;
 }
 
-.category-content tbody {
+.dashboard-content .category-content tbody {
   height: 50vh;
+  max-height: 450px;
   display: block;
   overflow: scroll;
   scroll-behavior: smooth;
 }
-
 
 /* for small devices */
 @media only screen and (max-width: 600px) {
@@ -136,9 +131,6 @@
 
 /* for medium devices */
 @media only screen and (min-width: 600px) and (max-width: 900px) {
-  .dashboard-layout .admin-dashboard {
-    margin: 0.5rem;
-  }
   .content {
     font-size: 0.7rem;
   }

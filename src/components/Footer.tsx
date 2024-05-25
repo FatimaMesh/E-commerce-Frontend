@@ -1,38 +1,47 @@
-import { BiSend } from "react-icons/bi";
-import { Link } from "react-scroll"
+import { BiSend, BiSolidContact } from "react-icons/bi"
+import { Link } from "react-router-dom"
 
 import logoIcon from "../assets/image/logoIcon.png"
+import {
+  FaEnvelope,
+  FaExclamationCircle,
+  FaFacebook,
+  FaInstagram,
+  FaMobile,
+  FaPhone,
+  FaTwitter
+} from "react-icons/fa"
 
 export const Footer = () => {
   return (
     <footer>
-      <section>
+      <section className="footer-logo">
         <img src={logoIcon} alt="logo image" />
-        <h3>Precision, Passion, Perfection: Your Dream Watch Awaits!</h3>
+        <p>Precision, Passion, Perfection: Your Dream Watch Awaits!</p>
       </section>
-      <section>
-        <p>Quick Link</p>
-        <div className="quick-link">
-          <Link to="product" smooth={true} duration={500} className="nav-link">
-            Product
-          </Link>
-          <Link to="about" smooth={true} duration={500} className="nav-link">
-            About us
-          </Link>
-          <Link to="category" smooth={true} duration={500} className="nav-link">
-            Category
-          </Link>
+      <form className="footer-subscribe">
+        <label htmlFor="subscribe-email">Subscribe</label>
+        <input type="email" className="input" name="subscribe-email" id="subscribe-email" />
+        <button className="btn">
+          <BiSend />
+          Send
+        </button>
+      </form>
+      <section className="footer-contact">
+        <h2>Contact Us</h2>
+        <div className="contact-link">
+          <a href="" className="nav-link">
+            <FaFacebook />
+          </a>
+          <a href="mailto:contact@shineshop.com" className="nav-link">
+            <FaEnvelope />
+          </a>
+          <a className="nav-link">
+            <FaPhone />
+          </a>
         </div>
       </section>
-      <section>
-        <form>
-          <label htmlFor="subscribe-email">Subscribe</label>
-          <input type="email" className="input" name="subscribe-email" id="subscribe-email"/>
-          <button className="btn">
-            <BiSend></BiSend>Send
-          </button>
-        </form>
-      </section>
+      <p className="footer-copy">&copy; 2024 Shine Shop. All rights reserved.</p>
     </footer>
   )
 }

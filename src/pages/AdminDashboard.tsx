@@ -1,35 +1,38 @@
+import { useState } from "react"
+
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
-import AdminSidebar from "@/components/Dashboard/Admin/AdminSidebar"
+import { PageContext } from "@/context/PageContext"
 import "../style/admin.css"
 import "../style/dashboard.css"
-import { useState } from "react"
-import { PageContext } from "@/context/PageContext"
-import { Users } from "@/components/Dashboard/Admin/Users"
-import { Products } from "@/components/Dashboard/Admin/Products"
-import { Profile } from "@/components/Dashboard/Profile"
-import { Category } from "@/components/Dashboard/Admin/Category"
-import { Orders } from "@/components/Dashboard/Admin/Orders"
-import { Dashboard } from "@/components/Dashboard/Admin/Dashboard"
+import {
+  AdminSidebar,
+  Users,
+  Products,
+  Profile,
+  Category,
+  Orders,
+  Dashboard
+} from "@/components/dashboardContent"
 
 export const AdminDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("dashboard")
 
   return (
     <PageContext.Provider value={{ openPage, setOpenPage }}>
-      <div className="dashboard-layout container">
-        <Header />
+      <Header />
+      <main className="dashboard-layout">
         <AdminSidebar />
-        <main className="admin-dashboard">
+        <div className="dashboard-content">
           {openPage === "dashboard" && <Dashboard />}
           {openPage === "users" && <Users />}
           {openPage === "products" && <Products />}
           {openPage === "account" && <Profile />}
           {openPage === "category" && <Category />}
           {openPage === "orders" && <Orders />}
-        </main>
-        <Footer />
-      </div>
+        </div>
+      </main>
+      <Footer />
     </PageContext.Provider>
   )
 }

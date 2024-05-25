@@ -3,18 +3,17 @@ import { BiCart, BiCommentDetail } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
 import dayjs from "dayjs"
 
-import "../style/productDetail.css"
 import { AppDispatch, RootState } from "@/services/store"
 import { fetchSingleProduct } from "@/services/slices/productSlice"
-import { errorMessage, successMessage } from "@/utility/notify"
-import { Product} from "@/types"
 import { addToCart, addToLocalCart } from "@/services/slices/orderItemsSlice"
+import { errorMessage, successMessage } from "@/utility/notify"
+import { Product } from "@/types"
+import { Review } from "./ReviewForm"
 
 export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
   const dispatch: AppDispatch = useDispatch()
   const { product, reviews, isLoading, error } = useSelector((state: RootState) => state.productR)
   const { isLoggedIn } = useSelector((state: RootState) => state.userR)
-
   const [quantity, setQuantity] = useState<number>(1)
 
   const increment = (e: MouseEvent<HTMLButtonElement>) => {
@@ -33,7 +32,7 @@ export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
       await dispatch(fetchSingleProduct(slug))
     }
     fetchDate()
-  }, [])
+  }, [dispatch, reviews])
 
   //add product to cart
   const handlerAddToCart = async ({
@@ -57,8 +56,9 @@ export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
       errorMessage((error as Error).message)
     }
   }
+
   return (
-    <main className="container">
+    <>
       <section className="product-detail">
         {isLoading && <p>loading ...</p>}
         {product && (
@@ -96,7 +96,7 @@ export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
             </div>
           </div>
         )}
-        {error && <p className="text-red-500">{error}</p>}
+        {error && <p className="error">{error}</p>}
       </section>
       <section className="review-product">
         <h2>
@@ -104,12 +104,18 @@ export const ViewProduct = ({ slug }: { slug: string | undefined }) => {
         </h2>
         <div className="review-container">
           {reviews?.length ? (
-            reviews.map((item) => <p key={item.reviewId}>{item.comment}</p>)
+            reviews.map((item) => (
+              <div className="review-item" key={item.reviewId}>
+                <p className="review-comment">{item.comment}</p>
+              </div>
+            ))
           ) : (
             <p className="no-review">No Review yet!</p>
           )}
         </div>
       </section>
-    </main>
+      {/* review form */}
+      {isLoggedIn && <Review productId={product?.productId} />}
+    </>
   )
 }

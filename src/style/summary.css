@@ -1,55 +1,79 @@
-/* .summary-dashboard {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin-bottom: 5rem;
+/* ----------summary dashboard-------------- */
+.summary-dashboard {
+  padding: 20px;
+  background-color: #f4f4f4;
 }
 
-.summary-dashboard h1{
-    text-align: center;
-    width: 80%;
-margin: 2rem auto;
-
+.summary-dashboard h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
 }
 
-.summary-dashboard .summary-card {
+.summary-card {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
-  width: 90%;
-  max-width: 900px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
 }
 
-.summary-card  div{
-    background-color: rgb(237, 211, 79);
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 5rem;
-    height: 5rem;
-
+.summary-card article {
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  text-align: center;
+  transition: transform 0.3s;
 }
 
-.summary-card  h2{
-    text-transform: uppercase;
-    text-align: center;
+.summary-card article div {
+  font-size: 3rem;
+  border-radius: 5px;
+  background-image: repeating-linear-gradient(
+      282deg,
+      hsla(264, 0%, 51%, 0.12) 0px,
+      transparent 7px,
+      hsla(264, 0%, 51%, 0.12) 12px,
+      transparent 19px,
+      hsla(264, 0%, 51%, 0.12) 24px,
+      transparent 31px,
+      hsla(264, 0%, 51%, 0.12) 36px
+    ),
+    repeating-linear-gradient(
+      176deg,
+      hsla(264, 0%, 51%, 0.12) 0px,
+      transparent 7px,
+      hsla(264, 0%, 51%, 0.12) 12px,
+      transparent 19px,
+      hsla(264, 0%, 51%, 0.12) 24px,
+      transparent 31px,
+      hsla(264, 0%, 51%, 0.12) 36px
+    ),
+    repeating-linear-gradient(
+      314deg,
+      hsla(264, 0%, 51%, 0.12) 0px,
+      transparent 7px,
+      hsla(264, 0%, 51%, 0.12) 12px,
+      transparent 19px,
+      hsla(264, 0%, 51%, 0.12) 24px,
+      transparent 31px,
+      hsla(264, 0%, 51%, 0.12) 36px
+    ),
+    linear-gradient(90deg, rgb(37, 37, 37), rgb(37, 37, 37));
+  margin-bottom: 10px;
+  color: goldenrod; 
 }
 
-.summary-dashboard article {
-  display: grid;
-  grid-template-columns: repeat(1, 1fr);
-  background-color: aliceblue;
-  justify-content: center;
-  align-items: center;
-    padding: 2rem;
-      box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;
+.summary-card article h2 {
+  font-size: 1.5rem;
+  margin: 10px 0;
 }
-.summary-dashboard p {
-  margin-top: 1.5rem;
-  font-weight: 800;  
-  grid-column: span 2;
-} */
+
+.summary-card article p {
+  font-size: 1rem;
+  color: #666666;
+}
+
+.summary-card article:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}

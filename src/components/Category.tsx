@@ -48,10 +48,7 @@ export const CategoryCard = () => {
                 )
               }
             >
-              <div className="card-text">
-                <h2 className="category-name">{item.name}</h2>
-                {/* <p>{item.description}</p> */}
-              </div>
+                <h2>{item.name}</h2>
             </div>
           ))}
           {error && <p className="text-red-500">{error}</p>}

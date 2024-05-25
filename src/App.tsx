@@ -18,16 +18,18 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/cart" element={<CartPage/>}/>
+        <Route path="/cart" element={<CartPage />} />
+        <Route path="/products" element={<Products />} />
+        <Route path="/products/:slug" element={<ProductDetail />} />
+        <Route path="/login" element={<Account />} />
+
         <Route element={<ProtectCustomerRoute />}>
           <Route path="/dashboard/customer" element={<CustomerDashboard />} />
         </Route>
         <Route element={<ProtectAdminRoute />}>
           <Route path="/dashboard/admin" element={<AdminDashboard />} />
         </Route>
-        <Route path="/products" element={<Products />} />
-        <Route path="/products/:slug" element={<ProductDetail />} />
-        <Route path="/login" element={<Account />} />
+
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

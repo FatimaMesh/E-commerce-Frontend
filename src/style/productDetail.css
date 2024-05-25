@@ -1,156 +1,173 @@
+/* General Container Styling */
 .product-detail {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  width: 800px;
-  margin: 4rem auto;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .detail-container {
-  width: 95%;
-  height: 70vh;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
-  gap: 2rem;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  border: 1px solid rgba(119, 136, 153, 0.156);
+  border-radius: 10px;
 }
-.title {
-  font-weight: 900;
+
+.image-detail img {
+  width: 100%;
+  max-width: 300px;
+  height: auto;
+  max-height: 450px;
+  display: block;
 }
-.detail-container img {
-  width: 300px;
+
+.detail {
+  flex: 1;
+  padding: 20px;
 }
 
 .info {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 360px;
-  gap: 1rem;
+  margin-bottom: 20px;
+}
+
+.info .title {
+  font-size: 1.4em;
+  margin-bottom: 10px;
+  color: grey;
 }
 
 .info p {
-  text-align: justify;
+  margin: 5px 0;
 }
 
-.action {
-  margin-top: 10%;
+.quantity {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 2rem;
+  margin-bottom: 20px;
 }
 
-.action .quantity {
-  display: grid;
-  grid-template-columns: repeat(3, 50px);
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  background-image: var(--bgcolor);
-  color: white;
-  border-radius: 10px;
-}
-.action h3 {
-  border-left: 1px solid white;
-  border-right: 1px solid white;
-}
 .quantity button {
-  border-radius: 10px;
+  background: goldenrod;
   color: white;
-  background: transparent;
   border: none;
-  font-size: 2rem;
-  font-family: "Courier New", Courier, monospace;
+  border-radius: 10px;
+  padding: 5px 10px;
   cursor: pointer;
-  transition: 0.3s ease-in-out;
+  font-size: 1em;
 }
 .quantity button:hover {
-  background-color: var(--color);
-  font-size: 2.2rem;
+  background: rgba(218, 165, 32, 0.781);
+}
+.quantity button:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
+.quantity h3 {
+  margin: 0 10px;
+}
+
+.action .btn {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 1em;
+  display: flex;
+  align-items: center;
+}
+
+/* Review Section Styling */
 .review-product {
-  width: 50rem;
-  margin: 0 auto;
-  padding: 1rem;
-  transition: 0.5s linear;
+  margin-top: 40px;
+  padding: 20px;
+  width: 90%;
+  max-width: 900px;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  background-color: #f9f9f9;
 }
+
 .review-product h2 {
-  font-weight: bold;
+  display: flex;
+  align-items: center;
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.review-container {
+  border-top: 1px solid #eaeaea;
+  padding-top: 20px;
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.review-item {
+  padding: 15px;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.review-item:last-child {
+  border-bottom: none;
+}
+
+.review-comment {
+  margin: 0;
+  color: #555;
+}
+
+.no-review {
+  color: #888;
   text-align: center;
-  border-bottom: 1px solid rgba(211, 211, 211, 0.571);
-  margin-bottom: 1rem;
-}
-.review-container p {
-  margin: 0.5rem auto;
-  background-color: rgba(211, 211, 211, 0.341);
-  padding: 1rem;
-  border-radius: 10rem;
-  cursor: alias;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
-  font-size: small;
+  padding: 20px;
 }
 
-.review-container .no-review {
-  background-color: transparent;
+/* Review Form Styling */
+.review-form {
+  margin-top: 10px;
+  display: flex;
+  width: 90%;
+  max-width: 900px;
+  align-items: center;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.review-container .no-review:hover {
-  background-color: rgba(211, 211, 211, 0.183);
+.review-form textarea {
+  width: 100%;
+  height: 100px;
+  padding: 10px;
+  border: 1px solid #eaeaea;
+  border-radius: 5px;
+  font-size: 1em;
+  resize: vertical;
 }
 
-.review-container p:hover {
-  background-color: rgba(211, 211, 211, 0.676);
+.review-form textarea::placeholder {
+  color: #aaa;
+}
+
+.review-form textarea:focus {
+  outline: 2px solid goldenrod;
+  border-color: goldenrod;
 }
 
 /* for small devices */
 @media only screen and (max-width: 600px) {
-  .product-detail {
-    width: 100%;
-    height: 130vh;
-    margin: 1rem auto;
-  }
   .detail-container {
     flex-direction: column;
-    height: 120vh;
   }
   .detail-container img {
     width: 170px;
-  }
-  .review-product {
-    width: 90%;
+    margin: 0 auto;
   }
 }
 
 /* for medium devices */
-
 @media only screen and (min-width: 600px) and (max-width: 900px) {
-  .product-detail {
-    width: 600px;
-  }
   .detail-container {
-    gap: 1rem;
+    align-items: center;
   }
   .detail-container img {
-    width: 220px;
+    width: 200px;
   }
-
-  .info {
-    width: 280px;
-  }
-  .action {
-    margin-top: 5%;
-    gap: 0.5rem;
-    flex-direction: column;
-  }
-  .review-product {
-    width: 70%;
-  }
-}
-
-/* for large devices */
-@media only screen and (min-width: 900px) and (max-width: 1200px) {
 }

@@ -156,5 +156,16 @@ export type Review = {
   productId: string
   userId: string
   product: Product
-  users: User[]
+  user: User
+}
+
+export type ReviewStates = {
+  reviews: Review[]
+  review: Review | null
+  isLoading: boolean
+  error: string | null
+}
+
+export type ReviewForm = {
+  comment: string
 }
