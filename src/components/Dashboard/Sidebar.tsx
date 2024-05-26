@@ -51,13 +51,13 @@ const Sidebar = () => {
                 <FaFirstOrder />
                 Orders
               </li>
-              {/* <li
+              <li
                 onClick={() => setOpenPage("review")}
                 className={openPage === "review" ? "open-sidebar" : ""}
               >
                 <BiComment />
                 Reviews
-              </li> */}
+              </li>
               <li
                 onClick={() => setOpenPage("account")}
                 className={openPage === "account" ? "open-sidebar" : ""}

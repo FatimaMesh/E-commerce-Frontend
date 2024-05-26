@@ -37,7 +37,7 @@ export type FilterType = {
   keyWord: string | undefined
   orderBy: number
   sortBy: number
-  category:string | undefined
+  category: string | undefined
   minPrice: number
   maxPrice: number
 }
@@ -153,8 +153,8 @@ export type orderStates = {
 }
 
 export type FormOrder = {
-  deliveryAddress: "string"
-  paymentMethod: "string"
+  deliveryAddress: string
+  paymentMethod: string
 }
 
 // type of review
@@ -169,6 +169,7 @@ export type Review = {
 
 export type ReviewStates = {
   reviews: Review[]
+  userReviews: Review[]
   review: Review | null
   isLoading: boolean
   error: string | null

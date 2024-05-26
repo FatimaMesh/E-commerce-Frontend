@@ -12,5 +12,19 @@ import Sidebar from "@/components/Dashboard/Sidebar"
 import { Cart } from "@/components/Dashboard/Customer/Cart"
 import { Shop } from "@/components/Dashboard/Customer/Shop"
 import { UserOrder } from "@/components/Dashboard/Customer/UserOrders"
+import { UserReview } from "@/components/Dashboard/Customer/UserReview"
 
-export { AdminSidebar, Users, Products, Profile, Category, Orders, Dashboard,Sidebar,Cart,Shop,UserOrder }
+export {
+  AdminSidebar,
+  Users,
+  Products,
+  Profile,
+  Category,
+  Orders,
+  Dashboard,
+  Sidebar,
+  Cart,
+  Shop,
+  UserOrder,
+  UserReview
+}

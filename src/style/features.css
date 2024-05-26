@@ -1,0 +1,47 @@
+/* Shop Features Section Styling */
+.shop-features {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+  /* max-width: 1200px; */
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  margin: 20px 0 -10px;
+}
+
+.shop-features article {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  max-width: 300px;
+}
+
+.shop-features img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.shop-features h3 {
+  margin: 0;
+  font-size: 1.2em;
+  color: #333;
+}
+
+.shop-features p {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+  color: #666;
+}
+
+
+@media only screen and (max-width: 730px) {
+  .shop-features {
+    flex-direction: column;
+    align-items: center;
+  }
+}

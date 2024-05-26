@@ -5,7 +5,8 @@ import "../style/customer.css"
 import { Header } from "@/components/Header"
 import { Footer } from "@/components/Footer"
 import { PageContext } from "@/context/PageContext"
-import { Sidebar, Cart, Profile, Shop, UserOrder } from "@/components/dashboardContent"
+import { Sidebar, Cart, Profile, Shop, UserOrder, UserReview } from "@/components/dashboardContent"
+
 
 export const CustomerDashboard = () => {
   const [openPage, setOpenPage] = useState<string>("shop")
@@ -17,6 +18,7 @@ export const CustomerDashboard = () => {
         <div className="dashboard-content">
           {openPage === "cart" && <Cart />}
           {openPage === "shop" && <Shop />}
+          {openPage === "review" && <UserReview />}
           {openPage === "order" && <UserOrder />}
           {openPage === "account" && <Profile />}
         </div>
