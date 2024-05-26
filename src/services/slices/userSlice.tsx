@@ -25,26 +25,34 @@ if (savedState) {
 }
 
 export const registerUser = createAsyncThunk("users/registerUser", async (data: FormRegister) => {
-  const response = await api.post("/users/signUp", data)
-  return response.data
+  try {
+    const response = await api.post("/users/signUp", data)
+    return response.data
+  } catch (error: any) {
+    throw error.response.data.Message
+  }
 })
 
 export const loginUser = createAsyncThunk("users/loginUser", async (data: FormLogin) => {
-  const response = await api.post("/users/signIn", data)
-  const token = response.data.data.token
-  localStorage.setItem("token", token)
-  return response.data
+  try {
+    const response = await api.post("/users/signIn", data)
+    const token = response.data.data.token
+    localStorage.setItem("token", token)
+    return response.data
+  } catch (error: any) {
+    throw error.response.data.Message
+  }
 })
 
 export const fetchUsers = createAsyncThunk(
   "users/fetchUsers",
   async ({ currentPage, itemsPerPage, sortBy, orderBy }: FilterUser) => {
-    const config = TokenConfig()
-    const response = await api.get(
-      `/users?page=${currentPage}&limit=${itemsPerPage}&sortBy=${sortBy}&orderBy=${orderBy}`,
-      config
-    )
-    return response.data
+      const config = TokenConfig()
+      const response = await api.get(
+        `/users?page=${currentPage}&limit=${itemsPerPage}&sortBy=${sortBy}&orderBy=${orderBy}`,
+        config
+      )
+      return response.data
   }
 )
 
@@ -57,18 +65,26 @@ export const updateProfile = createAsyncThunk(
     userProfile: FormUpdateProfile
     userId: string | undefined
   }) => {
-    const config = TokenConfig()
-    const response = await api.put(`/users/${userId}`, userProfile, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.put(`/users/${userId}`, userProfile, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
 export const updateUserBehavior = createAsyncThunk(
   "users/updateUserBehavior",
   async ({ userBehavior, userId }: { userBehavior: UserBehavior; userId: string | undefined }) => {
-    const config = TokenConfig()
-    const response = await api.put(`/users/${userId}/status`, userBehavior, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.put(`/users/${userId}/status`, userBehavior, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
@@ -81,18 +97,26 @@ export const updateUserPassword = createAsyncThunk(
     userPassword: FormUpdatePassword
     userId: string | undefined
   }) => {
-    const config = TokenConfig()
-    const response = await api.put(`/users/${userId}/updatePassword`, userPassword, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.put(`/users/${userId}/updatePassword`, userPassword, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
 export const deleteUser = createAsyncThunk(
   "users/deleteUser",
   async (userId: string | undefined) => {
-    const config = TokenConfig()
-    const response = await api.delete(`/users/${userId}`, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.delete(`/users/${userId}`, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 

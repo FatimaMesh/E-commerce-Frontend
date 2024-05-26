@@ -27,7 +27,7 @@ export const CreateOrder = () => {
       reset()
       dispatch(orderConfirm())
     } catch (error) {
-      errorMessage((error as Error).name)
+      errorMessage((error as Error).message)
     }
   }
 

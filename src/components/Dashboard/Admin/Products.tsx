@@ -16,13 +16,15 @@ export const Products = () => {
   const [keyWord, setKeyword] = useState<string | undefined>()
   const orderBy = 0
   const sortBy = 1
+  const category = ""
   const minPrice = 1
   const maxPrice = 2000000
 
   const {
     products,
     isLoading: isProductsLoading,
-    totalItems
+    totalItems,
+    error
   } = useSelector((state: RootState) => state.productR)
   const dispatch: AppDispatch = useDispatch()
 
@@ -30,11 +32,20 @@ export const Products = () => {
   useEffect(() => {
     const fetchDate = async () => {
       await dispatch(
-        fetchProducts({ currentPage, itemsPerPage, keyWord, orderBy, sortBy, minPrice, maxPrice })
+        fetchProducts({
+          currentPage,
+          itemsPerPage,
+          keyWord,
+          orderBy,
+          sortBy,
+          minPrice,
+          maxPrice,
+          category
+        })
       )
     }
     fetchDate()
-  }, [itemsPerPage, currentPage, keyWord, totalItems, dispatch])
+  }, [itemsPerPage, currentPage, keyWord, totalItems, category, dispatch])
 
   //fetch categories
   const { categories } = useSelector((state: RootState) => state.categoryR)
@@ -156,6 +167,7 @@ export const Products = () => {
           </tfoot>
         </table>
       )}
+      {error && <p className="error">{error}</p>}
       {isPopupOpen && <Popup onClose={handleClosePopup}>{popupContent}</Popup>}
     </section>
   )

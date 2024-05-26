@@ -13,7 +13,7 @@ import { Pagination } from "@/components/Pagination"
 export const UserOrder = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage] = useState<number>(4)
-  const { userOrders, totalUserOrders, isLoading, error } = useSelector(
+  const { userOrders, totalUserOrders, isLoading} = useSelector(
     (state: RootState) => state.orderR
   )
   const dispatch: AppDispatch = useDispatch()

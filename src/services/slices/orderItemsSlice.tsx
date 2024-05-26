@@ -51,9 +51,13 @@ export const fetchCart = createAsyncThunk("orderItems/fetchCart", async () => {
 })
 
 export const addToCart = createAsyncThunk("orderItems/addToCart", async (cartItem: cartData) => {
-  const config = TokenConfig()
-  const response = await api.post("/orderItems", cartItem, config)
-  return response.data
+  try {
+    const config = TokenConfig()
+    const response = await api.post("/orderItems", cartItem, config)
+    return response.data
+  } catch (error: any) {
+    throw error.response.data.Message
+  }
 })
 
 export const updateQuantity = createAsyncThunk(

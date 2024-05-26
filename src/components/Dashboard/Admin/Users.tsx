@@ -1,9 +1,9 @@
-import { AppDispatch, RootState } from "@/services/store"
 import { useDispatch, useSelector } from "react-redux"
 import { ChangeEvent, ReactNode, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { BiEdit } from "react-icons/bi"
 
+import { AppDispatch, RootState } from "@/services/store"
 import { Pagination } from "@/components/Pagination"
 import { fetchUsers } from "@/services/slices/userSlice"
 import { UpdateUser } from "./UpdateUser"
@@ -15,7 +15,7 @@ export const Users = () => {
   const [orderBy, setOrderBy] = useState<number>(0)
   const [sortBy, setSortBy] = useState<number>(1)
 
-  const { users, totalUsers, isLoading } = useSelector((state: RootState) => state.userR)
+  const { users, totalUsers, isLoading, error } = useSelector((state: RootState) => state.userR)
   const dispatch: AppDispatch = useDispatch()
 
   //popup window for add/edit/delete product
@@ -135,6 +135,7 @@ export const Users = () => {
           </table>
         </>
       )}
+      {error && <p className="error">{error}</p>}
       {isPopupOpen && <Popup onClose={handleClosePopup}>{popupContent}</Popup>}
     </section>
   )

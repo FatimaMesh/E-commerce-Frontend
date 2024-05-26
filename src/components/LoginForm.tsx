@@ -21,13 +21,13 @@ export const LoginForm = () => {
   //login user
   const loginSubmit: SubmitHandler<FormLogin> = async (data) => {
     try {
-      const response = await dispatch(loginUser(data))
-      successMessage(response.payload.message)
+      const response = await dispatch(loginUser(data)).unwrap()
+      successMessage(response.message)
       reset()
-      const userLoggedIn = response.payload.data.userSignIn
+      const userLoggedIn = response.data.userSignIn
       navigate(userLoggedIn.role === 1 ? "/dashboard/admin" : "/dashboard/customer")
-    } catch (error) {
-      errorMessage("Error occurred while signIn user")
+    } catch (error: any) {
+      errorMessage(error.message)
     }
   }
 

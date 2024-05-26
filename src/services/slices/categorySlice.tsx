@@ -18,27 +18,39 @@ export const fetchCategories = createAsyncThunk("categories/fetchCategories", as
 export const addCategory = createAsyncThunk(
   "categories/addCategory",
   async (category: FormCategory) => {
-    const config = TokenConfig()
-    const response = await api.post("/categories", category, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.post("/categories", category, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
 export const updateCategory = createAsyncThunk(
   "categories/updateCategory",
   async ({ category, categoryId }: { category: FormCategory; categoryId: string | undefined }) => {
-    const config = TokenConfig()
-    const response = await api.put(`/categories/${categoryId}`, category, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.put(`/categories/${categoryId}`, category, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
 export const deleteCategory = createAsyncThunk(
   "categories/deleteCategory",
   async (categoryId: string | undefined) => {
-    const config = TokenConfig()
-    const response = await api.delete(`/categories/${categoryId}`, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.delete(`/categories/${categoryId}`, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 

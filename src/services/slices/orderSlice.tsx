@@ -46,9 +46,13 @@ export const deleteOrder = createAsyncThunk(
 
 //only update method/address
 export const addOrder = createAsyncThunk("order/addOrder", async (order: FormOrder) => {
-  const config = TokenConfig()
-  const response = await api.post("/orders", order, config)
-  return response.data
+  try {
+    const config = TokenConfig()
+    const response = await api.post("/orders", order, config)
+    return response.data
+  } catch (error: any) {
+    throw error.response.data.Message
+  }
 })
 
 //only update method/address

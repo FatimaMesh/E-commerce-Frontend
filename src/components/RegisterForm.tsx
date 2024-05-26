@@ -18,11 +18,11 @@ export const RegisterForm = () => {
   //register user
   const registerSubmit: SubmitHandler<FormRegister> = async (data) => {
     try {
-      const response = await dispatch(registerUser(data))
-      successMessage(response.payload.message + " Login NOW")
+      const response = await dispatch(registerUser(data)).unwrap()
+      successMessage(response.message + " Login NOW")
       reset()
-    } catch (error) {
-      errorMessage("Error occurred while adding user")
+    } catch (error: any) {
+      errorMessage(error.message)
     }
   }
 

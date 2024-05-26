@@ -48,27 +48,39 @@ export const fetchSingleProduct = createAsyncThunk(
 export const addProduct = createAsyncThunk(
   "products/addProduct",
   async (productData: FormProduct) => {
-    const config = TokenConfig()
-    const response = await api.post("/products", productData, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.post("/products", productData, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
 export const deleteProduct = createAsyncThunk(
   "products/deleteProduct",
   async (productId: string | undefined) => {
-    const config = TokenConfig()
-    const response = await api.delete(`/products/${productId}`, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.delete(`/products/${productId}`, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
 export const updateProduct = createAsyncThunk(
   "products/updateProduct",
   async ({ productId, product }: { productId: string; product: FormProduct }) => {
-    const config = TokenConfig()
-    const response = await api.put(`/products/${productId}`, product, config)
-    return response.data
+    try {
+      const config = TokenConfig()
+      const response = await api.put(`/products/${productId}`, product, config)
+      return response.data
+    } catch (error: any) {
+      throw error.response.data.Message
+    }
   }
 )
 
