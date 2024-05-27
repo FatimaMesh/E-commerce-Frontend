@@ -1,25 +1,25 @@
-import axios from 'axios'
+import axios from "axios"
 
-const isDevelopment = import.meta.env.MODE === 'development'
+const isDevelopment = import.meta.env.MODE === "development"
 let baseURL = "https://sda-online-2-csharp-backend-teamwork.onrender.com/"
 
 if (!isDevelopment) {
   // Update this later when you have a working backend server
- baseURL = 'http://localhost:5125/'
-  // baseURL = "https://sda-online-2-csharp-backend-teamwork.onrender.com/"
+  //  baseURL = 'http://localhost:5125/'
+  baseURL = "https://sda-online-2-csharp-backend-teamwork.onrender.com/"
 }
 
 const api = axios.create({
   baseURL
 })
 
-// api.interceptors.request.use((config)=>{
-//   const token = localStorage.getItem("token");
-//   if(token){
-//     config.headers["Authorization"] = `Bearer.${token}`
-//   }
-//   return config;
-// })
+api.interceptors.request.use((config) => {
+  const token = localStorage.getItem("token")
+  if (token) {
+    config.headers["Authorization"] = `Bearer.${token}`
+  }
+  return config
+})
 
 // use this to handle errors gracefully
 // api.interceptors.response.use(
