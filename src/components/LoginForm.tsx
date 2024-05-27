@@ -64,7 +64,7 @@ export const LoginForm = () => {
         <button className="btn_login btn" type="submit">
           Login
         </button>
-        <button className="btn_forgot">Forgot Password</button>
+        <button className="btn_forgot" type="button">Forgot Password</button>
       </div>
     </form>
   )

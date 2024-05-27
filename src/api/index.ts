@@ -1,11 +1,12 @@
-import axios from 'axios'
+import axios from "axios"
 
-const isDevelopment = import.meta.env.MODE === 'development'
-let baseURL = "http://localhost:5125/"
+const isDevelopment = import.meta.env.MODE === "development"
+let baseURL = "https://sda-online-2-csharp-backend-teamwork.onrender.com/"
 
 if (!isDevelopment) {
   // Update this later when you have a working backend server
-  baseURL = 'http://localhost:5125/'
+  // baseURL = 'http://localhost:5125/'
+  baseURL = "https://sda-online-2-csharp-backend-teamwork.onrender.com/"
 }
 
 const api = axios.create({
