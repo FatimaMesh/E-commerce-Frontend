@@ -1,20 +1,9 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
 import api from "@/api"
-import { OrderItem, Product, cartData } from "@/types"
+import { cartData, localCartItems, orderItemsStates } from "@/types"
 import { TokenConfig } from "../TokenConfig"
 
-export type localCartItems = {
-  product: Product
-  quantity: number
-}
-export type orderItemsStates = {
-  orderItems: OrderItem[]
-  orderItem: OrderItem | null
-  isLoading: boolean
-  error: string | null
-  localCart: localCartItems[]
-}
 const initialState: orderItemsStates = {
   orderItems: [],
   orderItem: null,

@@ -5,12 +5,8 @@ import { AppDispatch } from "@/services/store"
 import { errorMessage, successMessage } from "@/utility/notify"
 import "../../style/profile.css"
 import { updateUserPassword } from "@/services/slices/userSlice"
-import { User } from "@/types"
+import { FormUpdatePassword, User } from "@/types"
 
-export type FormUpdatePassword = {
-  newPassword: string
-  oldPassword: string
-}
 export const UpdatePassword = ({
   user,
   updatedPassword

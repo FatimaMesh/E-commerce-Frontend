@@ -8,10 +8,10 @@ import {
   Error,
   Account,
   AdminDashboard,
-  CustomerDashboard
+  CustomerDashboard,
+  CartPage
 } from "./pages/pages"
 import { ProtectAdminRoute, ProtectCustomerRoute } from "./router/ProtectRoute"
-import { CartPage } from "./pages/CartPage"
 
 function App() {
   return (

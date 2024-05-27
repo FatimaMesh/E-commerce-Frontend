@@ -1,19 +1,14 @@
 import { SubmitHandler, useForm } from "react-hook-form"
 import dayjs from "dayjs"
 import { useEffect, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
 
 import { errorMessage, successMessage } from "@/utility/notify"
 import "../../style/profile.css"
 import { UpdatePassword } from "./UpdatePassword"
-import { useDispatch, useSelector } from "react-redux"
 import { AppDispatch, RootState } from "@/services/store"
 import { updateProfile } from "@/services/slices/userSlice"
-
-export type FormUpdateProfile = {
-  fullName: string
-  phone: number
-  email: string
-}
+import { FormUpdateProfile } from "@/types"
 
 export const Profile = () => {
   const { user } = useSelector((state: RootState) => state.userR)

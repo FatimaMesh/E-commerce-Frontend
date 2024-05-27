@@ -1,14 +1,11 @@
+import { useState } from "react"
+import { useDispatch } from "react-redux"
+
 import { deleteUser, updateUserBehavior } from "@/services/slices/userSlice"
 import { AppDispatch } from "@/services/store"
 import { User } from "@/types"
 import { errorMessage, successMessage } from "@/utility/notify"
-import { useState } from "react"
-import { useDispatch } from "react-redux"
 
-export type UserBehavior = {
-  role: number
-  isBanned: boolean
-}
 export const UpdateUser = ({ user }: { user: User }) => {
   const [isBanned, setIsBanned] = useState(user.isBanned)
   const [isAdmin, setIsAdmin] = useState(user.role === 1)

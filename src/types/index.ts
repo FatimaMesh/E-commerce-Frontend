@@ -96,6 +96,22 @@ export type UserState = {
   isLoggedIn: boolean
 }
 
+export type FormUpdateProfile = {
+  fullName: string
+  phone: number
+  email: string
+}
+
+export type FormUpdatePassword = {
+  newPassword: string
+  oldPassword: string
+}
+
+export type UserBehavior = {
+  role: number
+  isBanned: boolean
+}
+
 export type FormRegister = {
   fullName: string
   phone: number
@@ -125,6 +141,18 @@ export type OrderItem = {
 export type cartData = {
   productId: string
   quantity: number
+}
+
+export type localCartItems = {
+  product: Product
+  quantity: number
+}
+export type orderItemsStates = {
+  orderItems: OrderItem[]
+  orderItem: OrderItem | null
+  isLoading: boolean
+  error: string | null
+  localCart: localCartItems[]
 }
 
 // type of order

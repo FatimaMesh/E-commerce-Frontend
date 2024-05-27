@@ -6,6 +6,7 @@ import categoryReducer from "./slices/categorySlice"
 import orderItemReducer from "./slices/orderItemsSlice"
 import orderReducer from "./slices/orderSlice"
 import reviewReducer from "./slices/reviewSlice"
+
 export const store = configureStore({
   reducer: {
     productR: productReducer,

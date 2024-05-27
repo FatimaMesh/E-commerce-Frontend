@@ -1,11 +1,11 @@
 import { FaFirstOrder, FaShoppingCart } from "react-icons/fa"
 import { BiComment, BiSolidUserAccount, BiSolidWatch } from "react-icons/bi"
 import { useDispatch, useSelector } from "react-redux"
+import { useEffect } from "react"
 
 import userIcon from "../../assets/image/user.jpeg"
 import { usePage } from "@/context/PageContext"
 import { AppDispatch, RootState } from "@/services/store"
-import { useEffect } from "react"
 import { fetchCart } from "@/services/slices/orderItemsSlice"
 
 const Sidebar = () => {

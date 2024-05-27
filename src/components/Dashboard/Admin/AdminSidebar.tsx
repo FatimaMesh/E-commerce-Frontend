@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux"
-
-import userIcon from "../../../assets/image/user.jpeg"
 import { FaBoxOpen, FaUsers } from "react-icons/fa"
 import { BiCategory, BiSolidDashboard, BiSolidUserAccount, BiSolidWatch } from "react-icons/bi"
+
+import userIcon from "../../../assets/image/user.jpeg"
 import { usePage } from "@/context/PageContext"
 import { RootState } from "@/services/store"
 

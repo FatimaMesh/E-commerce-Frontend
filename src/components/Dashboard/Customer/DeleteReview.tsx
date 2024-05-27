@@ -1,7 +1,8 @@
-import { deleteReview } from "@/services/slices/reviewSlice";
-import { AppDispatch } from "@/services/store";
-import { errorMessage, successMessage } from "@/utility/notify";
-import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux"
+
+import { deleteReview } from "@/services/slices/reviewSlice"
+import { AppDispatch } from "@/services/store"
+import { errorMessage, successMessage } from "@/utility/notify"
 
 //Delete review
 export const DeleteReview = ({ id, onclose }: { id: string; onclose: () => void }) => {

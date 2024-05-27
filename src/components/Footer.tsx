@@ -1,16 +1,7 @@
-import { BiSend, BiSolidContact } from "react-icons/bi"
-import { Link } from "react-router-dom"
+import { BiSend } from "react-icons/bi"
+import { FaEnvelope, FaFacebook, FaPhone } from "react-icons/fa"
 
 import logoIcon from "../assets/image/logoIcon.png"
-import {
-  FaEnvelope,
-  FaExclamationCircle,
-  FaFacebook,
-  FaInstagram,
-  FaMobile,
-  FaPhone,
-  FaTwitter
-} from "react-icons/fa"
 
 export const Footer = () => {
   return (

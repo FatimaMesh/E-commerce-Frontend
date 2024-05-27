@@ -1,15 +1,11 @@
-import { MouseEvent, useEffect, useState } from "react"
-import { BiCart, BiCommentDetail, BiSend } from "react-icons/bi"
-import { useDispatch, useSelector } from "react-redux"
-import dayjs from "dayjs"
+import { BiSend } from "react-icons/bi"
+import { useDispatch } from "react-redux"
+import { SubmitHandler, useForm } from "react-hook-form"
 
-import { AppDispatch, RootState } from "@/services/store"
-import { fetchSingleProduct } from "@/services/slices/productSlice"
-import { addToCart, addToLocalCart } from "@/services/slices/orderItemsSlice"
+import { AppDispatch } from "@/services/store"
 import { addReview } from "@/services/slices/reviewSlice"
 import { errorMessage, successMessage } from "@/utility/notify"
-import { Product, ReviewForm } from "@/types"
-import { SubmitHandler, useForm } from "react-hook-form"
+import { ReviewForm } from "@/types"
 
 export const Review = ({ productId }: { productId: string | undefined }) => {
   const dispatch: AppDispatch = useDispatch()

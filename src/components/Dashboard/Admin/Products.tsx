@@ -1,9 +1,9 @@
-import { AppDispatch, RootState } from "@/services/store"
 import { useDispatch, useSelector } from "react-redux"
 import { ChangeEvent, ReactNode, useEffect, useState } from "react"
 import dayjs from "dayjs"
 import { BiEdit, BiSearchAlt, BiSolidWatch, BiTrash } from "react-icons/bi"
 
+import { AppDispatch, RootState } from "@/services/store"
 import { Pagination } from "@/components/Pagination"
 import { fetchProducts } from "@/services/slices/productSlice"
 import Popup from "@/components/Popup"

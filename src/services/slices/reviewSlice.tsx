@@ -1,6 +1,6 @@
-import api from "@/api"
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 
+import api from "@/api"
 import { TokenConfig } from "../TokenConfig"
 import { ReviewStates } from "@/types"
 

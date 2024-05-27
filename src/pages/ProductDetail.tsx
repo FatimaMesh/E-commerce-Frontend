@@ -1,5 +1,4 @@
 import { useParams } from "react-router-dom"
-import { BiSend } from "react-icons/bi"
 
 import { Footer } from "@/components/Footer"
 import { Header } from "@/components/Header"

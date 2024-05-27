@@ -1,7 +1,8 @@
-// import video from "../assets/video.mov";
+import { Link } from "react-scroll"
+
 import image from "../assets/image/im1.png"
 import image2 from "../assets/image/im2.png"
-import { Link } from "react-scroll"
+
 
 export const HeroSection = () => {
   return (

@@ -12,7 +12,7 @@ import { DeleteOrder } from "../OrderAction"
 export const Orders = () => {
   const [currentPage, setCurrentPage] = useState<number>(1)
   const [itemsPerPage] = useState<number>(4)
-  const { orders, isLoading, error, totalOrders } = useSelector((state: RootState) => state.orderR)
+  const { orders, isLoading, totalOrders } = useSelector((state: RootState) => state.orderR)
   const dispatch: AppDispatch = useDispatch()
 
   //popup window for add/edit/delete product
@@ -61,7 +61,7 @@ export const Orders = () => {
               <tr key={item.orderId}>
                 <td>
                   <p>Owner: {item.user.fullName}</p>
-                  <p>Email: {item.user.email} SR</p>
+                  <p>Email: {item.user.email}</p>
                   <p>Address: {item.deliveryAddress}</p>
                   <p>Total: {item.totalPrice} SR</p>
                   <p>Order Date: {dayjs(item.orderDate).format("DD MM YYYY")}</p>

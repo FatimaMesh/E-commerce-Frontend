@@ -1,7 +1,8 @@
-import { Account } from "@/pages/Account"
-import { RootState } from "@/services/store"
 import { useSelector } from "react-redux"
 import { Outlet } from "react-router-dom"
+
+import { Account } from "@/pages/Account"
+import { RootState } from "@/services/store"
 
 //protect Customer route
 export const ProtectCustomerRoute = () => {

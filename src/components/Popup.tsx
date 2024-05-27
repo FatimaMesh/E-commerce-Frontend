@@ -1,4 +1,5 @@
 import React, { ReactNode } from "react"
+
 import "../style/popup.css"
 interface PopupProps {
   onClose: () => void

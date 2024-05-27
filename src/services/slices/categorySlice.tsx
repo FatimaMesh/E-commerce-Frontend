@@ -1,6 +1,7 @@
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
+
 import api from "@/api"
 import { CategoryStates, FormCategory } from "@/types"
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import { TokenConfig } from "../TokenConfig"
 
 const initialState: CategoryStates = {

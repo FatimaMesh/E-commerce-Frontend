@@ -1,6 +1,8 @@
 import { useEffect } from "react"
 import { FaOpencart, FaTrash } from "react-icons/fa"
 import { useDispatch, useSelector } from "react-redux"
+import { Link } from "react-router-dom"
+
 import "../style/cart.css"
 import cartImage from "../assets/image/cartImage.png"
 import { Footer } from "@/components/Footer"
@@ -12,7 +14,6 @@ import {
 } from "@/services/slices/orderItemsSlice"
 import { AppDispatch, RootState } from "@/services/store"
 import { successMessage } from "@/utility/notify"
-import { Link } from "react-router-dom"
 
 export const CartPage = () => {
   //for local storage view
