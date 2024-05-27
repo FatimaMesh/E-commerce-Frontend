@@ -12,6 +12,7 @@
   background-color: whitesmoke;
   border-radius: 1rem;
   width: 50rem;
+  height: fit-content;
 }
 
 .auth-container .card_info {
@@ -28,7 +29,7 @@
   height: 20em;
   min-width: 20vw;
   max-width: 40vw;
-  max-height: 50vh;
+  /* max-height: 50vh; */
   padding: 0 0.5rem;
   border-top-right-radius: 5rem;
   border-bottom-right-radius: 5rem;
@@ -127,7 +128,6 @@
   .auth-container .card {
     flex-direction: column;
     width: 22rem;
-    height: 90vh;
   }
   .auth-container .card_info {
     gap: 0.5rem;
